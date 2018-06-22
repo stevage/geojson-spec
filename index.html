@@ -73,6 +73,7 @@ System 1984, and units of decimal degrees.">
         h1 span, h2 span, h3 span, h4 span {
             color:green !important;
         }
+
         pre {
             font-size: 1em;
             margin-top: 0px;
@@ -402,37 +403,37 @@ ISSN: 2070-1721                                                  Cadcorp
 
    GeoJSON is a format for encoding a variety of geographic data
    structures using JavaScript Object Notation (JSON) [<a href="https://tools.ietf.org/html/rfc7159" title="&quot;The JavaScript Object Notation (JSON) Data Interchange Format&quot;">RFC7159</a>].  A
-   GeoJSON object may represent a region of space (a Geometry), a
-   spatially bounded entity (a Feature), or a list of Features (a
-   FeatureCollection).  GeoJSON supports the following geometry types:
-   Point, LineString, Polygon, MultiPoint, MultiLineString,
-   MultiPolygon, and GeometryCollection.  Features in GeoJSON contain a
-   Geometry object and additional properties, and a FeatureCollection
+   GeoJSON object may represent a region of space (a <span class="gj-type">Geometry</span>), a
+   spatially bounded entity (a <span class="gj-type">Feature</span>), or a list of Features (a
+   <span class="gj-type">FeatureCollection</span>).  GeoJSON supports the following geometry types:
+   <span class="gj-type">Point</span>, <span class="gj-type">LineString</span>, <span class="gj-type">Polygon</span>, <span class="gj-type">MultiPoint</span>, <span class="gj-type">MultiLineString</span>,
+   <span class="gj-type">MultiPolygon</span>, and <span class="gj-type">GeometryCollection</span>.  Features in GeoJSON contain a
+   <span class="gj-type">Geometry</span> object and additional properties, and a <span class="gj-type">FeatureCollection</span>
    contains a list of Features.<p>
    The format is concerned with geographic data in the broadest sense;
    anything with qualities that are bounded in geographical space might
-   be a Feature whether or not it is a physical structure.  The concepts
+   be a <span class="gj-type">Feature</span> whether or not it is a physical structure.  The concepts
    in GeoJSON are not new; they are derived from preexisting open
    geographic information system standards and have been streamlined to
    better suit web application development using JSON.<p>
    GeoJSON comprises the seven concrete geometry types defined in the
    OpenGIS Simple Features Implementation Specification for SQL [<a href="#ref-SFSQL" title="&quot;OpenGIS Simple Features Specification For SQL Revision 1.1&quot;">SFSQL</a>]:
-   0-dimensional Point and MultiPoint; 1-dimensional curve LineString
-   and MultiLineString; 2-dimensional surface Polygon and MultiPolygon;
-   and the heterogeneous GeometryCollection.  GeoJSON representations of
+   0-dimensional <span class="gj-type">Point</span> and <span class="gj-type">MultiPoint</span>; 1-dimensional curve <span class="gj-type">LineString</span>
+   and <span class="gj-type">MultiLineString</span>; 2-dimensional surface <span class="gj-type">Polygon</span> and <span class="gj-type">MultiPolygon</span>;
+   and the heterogeneous <span class="gj-type">GeometryCollection</span>.  GeoJSON representations of
    instances of these geometry types are analogous to the well-known
    binary (WKB) and well-known text (WKT) representations described in
    that same specification.<p>
-   GeoJSON also comprises the types Feature and FeatureCollection.
-   Feature objects in GeoJSON contain a Geometry object with one of the
-   above geometry types and additional members.  A FeatureCollection
-   object contains an array of Feature objects.  This structure is
+   GeoJSON also comprises the types <span class="gj-type">Feature</span> and <span class="gj-type">FeatureCollection</span>.
+   <span class="gj-type">Feature</span> objects in GeoJSON contain a <span class="gj-type">Geometry</span> object with one of the
+   above geometry types and additional members.  A <span class="gj-type">FeatureCollection</span>
+   object contains an array of <span class="gj-type">Feature</span> objects.  This structure is
    analogous to that of the Web Feature Service (WFS) response to
    GetFeatures requests specified in [<a href="#ref-WFSv1" title="&quot;Web Feature Service Implementation Specification&quot;">WFSv1</a>] or to a Keyhole Markup
    Language (KML) Folder of Placemarks [<a href="#ref-KMLv2.2" title="&quot;OGC KML&quot;">KMLv2.2</a>].  Some implementations
    of the WFS specification also provide GeoJSON-formatted responses to
    GetFeature requests, but there is no particular service model or
-   Feature type ontology implied in the GeoJSON format specification.<p>
+   <span class="gj-type">Feature</span> type ontology implied in the GeoJSON format specification.<p>
    Since its initial publication in 2008 [<a href="#ref-GJ2008" title="&quot;The GeoJSON Format Specification&quot;">GJ2008</a>], the GeoJSON format
    specification has steadily grown in popularity.  It is widely used in
    JavaScript web-mapping libraries, JSON-based document databases, and
@@ -467,8 +468,8 @@ ISSN: 2070-1721                                                  Cadcorp
 
   <!-- </pre> -->
   <ul>
-  <li>JavaScript Object Notation (JSON), and the terms object, member,
-      name, value, array, number, true, false, and null, are to be
+  <li>JavaScript Object Notation (JSON), and the terms <code>object</code>, <code>member</code>,
+      <code>name</code>, <code>value</code>, <code>array</code>, <code>number</code>, <code>true</code>, <code>false</code>, and <code>null</code>, are to be
       interpreted as defined in [<a href="https://tools.ietf.org/html/rfc7159" title="&quot;The JavaScript Object Notation (JSON) Data Interchange Format&quot;">RFC7159</a>].
 
   </li>
