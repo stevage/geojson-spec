@@ -158,6 +158,9 @@ System 1984, and units of decimal degrees.">
     samp {
       white-space: pre;
       display:block;
+      margin-top:0.5em;
+      padding-left:2em;
+      background:hsl(240,100%,99%);
    }
 
     .main-body {
@@ -210,6 +213,11 @@ System 1984, and units of decimal degrees.">
     .gj-type {
         color: hsl(0,80%,35%);
         font-weight:bold;
+    }
+
+    .example {
+      padding-left:2em;
+      border-left:1px solid lightgrey;
     }
 
     </style>
@@ -874,51 +882,47 @@ ISSN: 2070-1721                                                  Cadcorp
 
    Example of a 2D bbox member on a <span class="gj-type">Feature</span>:
 
-   <samp>
-
-   {
-       "type": "Feature",
-       "bbox": [-10.0, -10.0, 10.0, 10.0],
-       "geometry": {
-           "type": "Polygon",
-           "coordinates": [
-               [
-                   [-10.0, -10.0],
-                   [10.0, -10.0],
-                   [10.0, 10.0],
-                   [-10.0, -10.0]
-               ]
-           ]
-       }
-       //...
-   }
+<samp>{
+    "type": "Feature",
+    "bbox": [-10.0, -10.0, 10.0, 10.0],
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [-10.0, -10.0],
+                [10.0, -10.0],
+                [10.0, 10.0],
+                [-10.0, -10.0]
+            ]
+        ]
+    }
+    //...
+}
 
 </samp>
 
    Example of a 2D bbox member on a <span class="gj-type">FeatureCollection</span>:
 
-   <samp>
-   {
-       "type": "FeatureCollection",
-       "bbox": [100.0, 0.0, 105.0, 1.0],
-       "features": [
-       //...
-       ]
-   }
+   
+   <samp>{
+    "type": "FeatureCollection",
+    "bbox": [100.0, 0.0, 105.0, 1.0],
+    "features": [
+    //...
+    ]
+}
 
 </samp>
 
    Example of a 3D bbox member with a depth of 100 meters:
 
-<samp>
-
-   {
-       "type": "FeatureCollection",
-       "bbox": [100.0, 0.0, -100.0, 105.0, 1.0, 0.0],
-       "features": [
-       //...
-       ]
-   }
+<samp>{
+    "type": "FeatureCollection",
+    "bbox": [100.0, 0.0, -100.0, 105.0, 1.0, 0.0],
+    "features": [
+    //...
+    ]
+}
 </samp>
 
 <span class="h3"><h3><a class="selflink" name="section-5.1" href="#section-5.1">5.1</a>.  The Connecting Lines</h3></span>
@@ -928,9 +932,8 @@ ISSN: 2070-1721                                                  Cadcorp
    "west", "south", "east", and "north", every point on the northernmost
    line can be expressed as
 
-   <samp>
-   (lon, lat) = (west + (east - west) * t, north)
-</samp>
+   <samp>(lon, lat) = (west + (east - west) * t, north)</samp>
+
    with <code>0 &lt;= t &lt;= 1</code>.
 
 <span class="h3"><h3><a class="selflink" name="section-5.2" href="#section-5.2">5.2</a>.  The Antimeridian</h3></span>
@@ -941,23 +944,18 @@ ISSN: 2070-1721                                                  Cadcorp
    degrees S and 177 degrees E, and the northwest corner is at 16
    degrees S and 178 degrees W.  The antimeridian-spanning GeoJSON
    bounding box for this <span class="gj-type">FeatureCollection</span> is
-   <p>
-
+   
    <samp>"bbox": [177.0, -20.0, -178.0, -16.0]</samp>
-   <p>
-
+   
    and covers 5 degrees of longitude.
-   <p>
-
+   
    The complementary bounding box for the same latitude band, not
    crossing the antimeridian, is
-   <p>
-
+   
    <samp>"bbox": [-178.0, -20.0, 177.0, -16.0]</samp>
 
    and covers 355 degrees of longitude.
-   <p>
-
+   
    The latitude of the northeast corner is always greater than the
    latitude of the southwest corner, but bounding boxes that cross the
    antimeridian have a northeast corner longitude that is less than the
@@ -971,29 +969,27 @@ ISSN: 2070-1721                                                  Cadcorp
    approximates a spherical cap bounded by the "minlat" circle of
    latitude.
 
-   <samp>
-   "bbox": [-180.0, minlat, 180.0, 90.0]
-</samp>
+   <samp>"bbox": [-180.0, minlat, 180.0, 90.0]</samp>
+
    A bounding box that contains the South Pole extends from a southwest
    corner of 90 degrees S, 180 degrees W to a northeast corner of
    "maxlat" degrees S, 180 degrees E.
-   <samp>
-   "bbox": [-180.0, -90.0, 180.0, maxlat]
-</samp>
+   
+   <samp>"bbox": [-180.0, -90.0, 180.0, maxlat]</samp>
+
    A bounding box that just touches the North Pole and forms a slice of
    an approximate spherical cap when viewed on a globe extends from a
    southwest corner of "minlat" degrees N and "westlon" degrees E to a
    northeast corner of 90 degrees N and "eastlon" degrees E.
-   <samp>
-   "bbox": [westlon, minlat, eastlon, 90.0]
-</samp>
+   
+   <samp>"bbox": [westlon, minlat, eastlon, 90.0]</samp>
+   
    Similarly, a bounding box that just touches the South Pole and forms
    a slice of an approximate spherical cap when viewed on a globe has
    the following representation in GeoJSON.
 
-<samp>
-   "bbox": [westlon, -90.0, eastlon, maxlat]
-</samp>
+   <samp>"bbox": [westlon, -90.0, eastlon, maxlat]</samp>
+
    Implementers MUST NOT use latitude values greater than 90 or less
    than -90 to imply an extent that is not a spherical cap.
 
@@ -1017,7 +1013,8 @@ ISSN: 2070-1721                                                  Cadcorp
        "properties": {...},
        "title": "Example Feature"
    }
-</samp>
+   </samp>
+
    the name/value pair of <code>"title": "Example</code> <span class="gj-type">Feature</span>" is a foreign
    member.  When the value of a foreign member is an object, all the
    descendant members of that object are themselves foreign members.
@@ -1026,6 +1023,7 @@ ISSN: 2070-1721                                                  Cadcorp
    GeoJSON semantics do not apply to foreign members and their
    descendants, regardless of their names and values.  For example, in
    the (abridged) <span class="gj-type">Feature</span> object below
+
    <samp>
    {
        "type": "Feature",
@@ -1040,7 +1038,8 @@ ISSN: 2070-1721                                                  Cadcorp
            ]
        }
    }
-</samp>
+   </samp>
+
    the <code>"centerline"</code> member is not a GeoJSON <span class="gj-type">Geometry</span> object.
 
 <span class="h2"><h2><a class="selflink" name="section-7" href="#section-7">7</a>.  GeoJSON Types Are Not Extensible</h2></span>
@@ -1088,19 +1087,19 @@ ISSN: 2070-1721                                                  Cadcorp
    each other.  A GeoJSON <span class="gj-type">Point</span> is always converted to a 'geo' URI that
    has no uncertainty parameter.<p>
 
+   <div class="example">
+
    'geo' URI: <code>geo:lat,lon</code>
    <p>
 
-   GeoJSON:
-
-   <code>
-   {"type": "Point", "coordinates": [lon, lat]}
-    </code>
-
+   GeoJSON: <code>{"type": "Point", "coordinates": [lon, lat]}</code>
+   </div>
     <p>
 
    The mapping between 'geo' URIs and GeoJSON <span class="gj-type">Point</span>s that specify
    elevation is shown below.<p>
+
+   <div class="example">
 
    'geo' URI: <code>geo:lat,lon,alt</code>
    <p>
@@ -1108,6 +1107,7 @@ ISSN: 2070-1721                                                  Cadcorp
    <code>
    {"type": "Point", "coordinates": [lon, lat, alt]}
    </code>
+   </div>
    <p>
 
    GeoJSON has no concept of uncertainty; imprecise or uncertain 'geo'
