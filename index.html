@@ -540,7 +540,7 @@ ISSN: 2070-1721                                                  Cadcorp
 <span class="h2"><h2><a class="selflink" name="section-3" href="#section-3">3</a>.  GeoJSON Object</h2></span>
 
    A GeoJSON object represents a <span class="gj-type">Geometry</span>, <span class="gj-type">Feature</span>, or collection of
-   Features.
+   <span class="gj-type">Feature</span>s.
 
 <ul>
   <li>A GeoJSON object is a JSON object.
@@ -662,7 +662,7 @@ ISSN: 2070-1721                                                  Cadcorp
 
 <span class="h4"><h4><a class="selflink" name="section-3.1.6" href="#section-3.1.6">3.1.6</a>.  <span class="gj-type">Polygon</span></h4></span>
 
-   To specify a constraint specific to Polygons, it is useful to
+   To specify a constraint specific to <span class="gj-type">Polygon</span>s, it is useful to
    introduce the concept of a linear ring:
 
 <ul>
@@ -685,7 +685,7 @@ ISSN: 2070-1721                                                  Cadcorp
 
    Note: the [<a href="#ref-GJ2008" title="&quot;The GeoJSON Format Specification&quot;">GJ2008</a>] specification did not discuss linear ring winding
    order.  For backwards compatibility, parsers SHOULD NOT reject
-   Polygons that do not follow the right-hand rule.
+   <span class="gj-type">Polygon</span>s that do not follow the right-hand rule.
 
    Though a linear ring is not explicitly represented as a GeoJSON
    geometry type, it leads to a canonical formulation of the <span class="gj-type">Polygon</span>
@@ -696,7 +696,7 @@ ISSN: 2070-1721                                                  Cadcorp
       linear ring coordinate arrays.
 
   </li>
-  <li>For Polygons with more than one of these rings, the first MUST be
+  <li>For <span class="gj-type">Polygon</span>s with more than one of these rings, the first MUST be
       the exterior ring, and any others MUST be interior rings.  The
       exterior ring bounds the surface, and the interior rings (if
       present) bound holes within the surface.
@@ -720,7 +720,7 @@ ISSN: 2070-1721                                                  Cadcorp
    example, a <span class="gj-type">Geometry</span> object in the shape of a lowercase roman "i" can
    be composed of one point and one <span class="gj-type">LineString</span>.
 <p>
-   GeometryCollections have a different syntax from single type <span class="gj-type">Geometry</span>
+   <span class="gj-type">GeometryCollection</span>s have a different syntax from single type <span class="gj-type">Geometry</span>
    objects (<span class="gj-type">Point</span>, <span class="gj-type">LineString</span>, and <span class="gj-type">Polygon</span>) and homogeneously typed
    multipart <span class="gj-type">Geometry</span> objects (<span class="gj-type">MultiPoint</span>, <span class="gj-type">MultiLineString</span>, and
    <span class="gj-type">MultiPolygon</span>) but have no different semantics.  Although a
@@ -731,14 +731,14 @@ ISSN: 2070-1721                                                  Cadcorp
    apply any additional semantics to the "geometries" array.
 <p>
    To maximize interoperability, implementations SHOULD avoid nested
-   GeometryCollections.  Furthermore, GeometryCollections composed of a
+   <span class="gj-type">GeometryCollection</span>s.  Furthermore, <span class="gj-type">GeometryCollection</span>s composed of a
    single part or a number of parts of a single type SHOULD be avoided
    when that single part or a single object of multipart type
    (<span class="gj-type">MultiPoint</span>, <span class="gj-type">MultiLineString</span>, or <span class="gj-type">MultiPolygon</span>) could be used instead.
 <p>
 <span class="h4"><h4><a class="selflink" name="section-3.1.9" href="#section-3.1.9">3.1.9</a>.  Antimeridian Cutting</h4></span>
 
-   In representing Features that cross the antimeridian,
+   In representing <span class="gj-type">Feature</span>s that cross the antimeridian,
    interoperability is improved by modifying their geometry.  Any
    geometry that crosses the antimeridian SHOULD be represented by
    cutting it in two such that neither part's representation crosses the
@@ -855,8 +855,8 @@ ISSN: 2070-1721                                                  Cadcorp
 <span class="h2"><h2><a class="selflink" name="section-5" href="#section-5">5</a>.  Bounding Box</h2></span>
 
    A GeoJSON object MAY have a member named "bbox" to include
-   information on the coordinate range for its Geometries, Features, or
-   FeatureCollections.  The value of the bbox member MUST be an array of
+   information on the coordinate range for its Geometries, <span class="gj-type">Feature</span>s, or
+   <span class="gj-type">FeatureCollection</span>s.  The value of the bbox member MUST be an array of
    length 2*n where n is the number of dimensions represented in the
    contained geometries, with all axes of the most southwesterly point
    followed by all axes of the more northeasterly point.  The axes order
@@ -928,9 +928,9 @@ ISSN: 2070-1721                                                  Cadcorp
 
 <span class="h3"><h3><a class="selflink" name="section-5.2" href="#section-5.2">5.2</a>.  The Antimeridian</h3></span>
 
-   Consider a set of point Features within the Fiji archipelago,
+   Consider a set of point <span class="gj-type">Feature</span>s within the Fiji archipelago,
    straddling the antimeridian between 16 degrees S and 20 degrees S.
-   The southwest corner of the box containing these Features is at 20
+   The southwest corner of the box containing these <span class="gj-type">Feature</span>s is at 20
    degrees S and 177 degrees E, and the northwest corner is at 16
    degrees S and 178 degrees W.  The antimeridian-spanning GeoJSON
    bounding box for this <span class="gj-type">FeatureCollection</span> is
@@ -1095,7 +1095,7 @@ ISSN: 2070-1721                                                  Cadcorp
    {"type": "Point", "coordinates": [lon, lat]}
     </samp>
 
-   The mapping between 'geo' URIs and GeoJSON Points that specify
+   The mapping between 'geo' URIs and GeoJSON <span class="gj-type">Point</span>s that specify
    elevation is shown below.<p>
 
    'geo' URI:
@@ -1146,7 +1146,7 @@ ISSN: 2070-1721                                                  Cadcorp
    The size of a GeoJSON text in bytes is a major interoperability
    consideration, and precision of coordinate values has a large impact
    on the size of texts.  A GeoJSON text containing many detailed
-   Polygons can be inflated almost by a factor of two by increasing
+   <span class="gj-type">Polygon</span>s can be inflated almost by a factor of two by increasing
    coordinate precision from 6 to 15 decimal places.  For geographic
    coordinates with units of degrees, 6 decimal places (a default common
    in, e.g., sprintf) amounts to about 10 centimeters, a precision well
@@ -1500,7 +1500,7 @@ ISSN: 2070-1721                                                  Cadcorp
       coordinate precision on interoperability.
 
   </li>
-  <li>Interoperability concerns of GeometryCollections are noted.  These
+  <li>Interoperability concerns of <span class="gj-type">GeometryCollection</span>s are noted.  These
       objects should be used sparingly (see <a href="#section-3.1.8">Section 3.1.8</a>).
 </li>
 </ul>
