@@ -186,6 +186,19 @@ System 1984, and units of decimal degrees.">
         text-decoration:dotted hsl(220,30%,40%) underline;
     }
 
+    .disclaimer {
+        background:hsl(60,80%,95%);
+        border:1px solid hsl(60,80%,45%);
+        padding:0.5em 1em;
+        font-family:sans-serif;
+        font-style:italic;
+        width:100%;
+    }
+
+    .disclaimer h3 {
+        color:black;
+    }
+
     </style>
     <!--[if IE]>
     <style>
@@ -224,25 +237,28 @@ System 1984, and units of decimal degrees.">
     </script>
 </head>
 <body onload="addHeaderTags()">
-    <h1 class="h1">What you are looking at</h1>
   <div class="content">
-   <div style="height: 13px;">
+<!--    <div style="height: 13px;">
       <div onmouseover="this.style.cursor='pointer';" onclick="showElem('legend');" onmouseout="hideElem('legend')" style="height: 6px; position: absolute; cursor: pointer;" class="pre noprint docinfo bgblue" title="Click for colour legend.">                                                                        </div>
       <div id="legend" class="docinfo noprint pre legend" style="position: absolute; top: 4px; left: 4ex; visibility: hidden; background-color: white; padding: 4px 9px 5px 7px; border: 1px solid rgb(51, 68, 85);" onmouseover="showElem('legend');" onmouseout="hideElem('legend');"></div>
    </div>
+ -->
+<div class="disclaimer">
+<h3 class="h3">Disclaimer</h3>
+This is an unofficial, reformatted version of the official <a href="https://tools.ietf.org/html/rfc7946">RFC 7946</a>. 
 
-<br>
-This is an unofficial, reformatted version of the official <a href="https://tools.ietf.org/html/rfc7946">RFC 7946</a>.
-<br>
-<br>
-<br>
+It does not incorporate <a href="https://www.rfc-editor.org/errata_search.php?rfc=7946">known errata</a>.
+<p>
+    No wording has been intentionally changed from the official document. Some sections of RFC administration have been removed. This version has been prepared by <a href="https://github.com/stevage">Steve Bennett</a>, who had no involvement with the creation of the GeoJSON specification, nor its ongoing maintenance. Raise issues <a href="https://github.com/stevage/geojson-spec/issues">here</a>.
+</p>
+</div>
 <!-- 
 <span class="pre noprint docinfo top">[<a href="https://tools.ietf.org/html/" title="Document search and retrieval page">Docs</a>] [<a href="https://tools.ietf.org/rfc/rfc7946.txt" title="Plaintext version of this document">txt</a>|<a href="https://tools.ietf.org/pdf/rfc7946" title="PDF version of this document">pdf</a>] [<a href="https://tools.ietf.org/html/draft-ietf-geojson" title="draft-ietf-geojson">draft-ietf-geojson</a>] [<a href="https://datatracker.ietf.org/doc/rfc7946" title="IESG Datatracker information for this document">Tracker</a>] [<a href="https://tools.ietf.org/rfcdiff?difftype=--hwdiff&amp;url2=rfc7946" title="Inline diff (wdiff)">Diff1</a>] [<a href="https://tools.ietf.org/rfcdiff?url2=rfc7946" title="Side-by-side diff">Diff2</a>] [<a href="https://www.rfc-editor.org/errata_search.php?rfc=7946">Errata</a>]</span><br>
 <span class="pre noprint docinfo">                                                                        </span><br>
 <span class="pre noprint docinfo">                                                       PROPOSED STANDARD</span><br>
  -->
 
-<span class="pre noprint docinfo">                                                            <span style="color: #C00;">Errata Exist</span></span><br>
+<!-- <span class="pre noprint docinfo">                                                            <span style="color: #C00;">Errata Exist</span></span><br> -->
 <div class="main-body">
 <!-- <pre>
 Internet Engineering Task Force (IETF)                         H. Butler
