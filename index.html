@@ -154,6 +154,25 @@ System 1984, and units of decimal degrees.">
 
     .main-body {
         font-family:sans-serif;
+        position:absolute;
+        /*left:20em;*/
+    }
+
+    body {
+        margin-left:23em;
+    }
+
+    .toc {
+        /*white-space: pre;*/
+        width: 20em;
+        height:100vh;
+        overflow-x:hidden;
+        overflow-y:scroll;
+        padding:0.5em 1em;
+        border-right:1px dotted lightgrey;
+        position:fixed;
+        left:0em;
+        top:0;
     }
 
     </style>
@@ -212,6 +231,7 @@ This is an unofficial, reformatted version of the official <a href="https://tool
 <span class="pre noprint docinfo">                                                       PROPOSED STANDARD</span><br>
 <span class="pre noprint docinfo">                                                            <span style="color: #C00;">Errata Exist</span></span><br>
 <div class="main-body">
+<pre>
     Internet Engineering Task Force (IETF)                         H. Butler
 Request for Comments: 7946                                     Hobu Inc.
 Category: Standards Track                                        M. Daly
@@ -226,7 +246,7 @@ ISSN: 2070-1721                                                  Cadcorp
                                                              Planet Labs
                                                              August 2016
 
-
+</pre>
                            <span class="h1"><h1>The GeoJSON Format</h1></span>
 
 <h2>Abstract</h2>
@@ -270,63 +290,63 @@ ISSN: 2070-1721                                                  Cadcorp
    described in the Simplified BSD License.
 
    <h2>Table of Contents</h2>
-<pre>
-   <a href="#section-1">1</a>.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   <a href="#page-3">3</a>
-     <a href="#section-1.1">1.1</a>.  Requirements Language . . . . . . . . . . . . . . . . . .   <a href="#page-4">4</a>
-     <a href="#section-1.2">1.2</a>.  Conventions Used in This Document . . . . . . . . . . . .   <a href="#page-4">4</a>
-     <a href="#section-1.3">1.3</a>.  Specification of GeoJSON  . . . . . . . . . . . . . . . .   <a href="#page-4">4</a>
-     <a href="#section-1.4">1.4</a>.  Definitions . . . . . . . . . . . . . . . . . . . . . . .   <a href="#page-5">5</a>
-     <a href="#section-1.5">1.5</a>.  Example . . . . . . . . . . . . . . . . . . . . . . . . .   <a href="#page-5">5</a>
-   <a href="#section-2">2</a>.  GeoJSON Text  . . . . . . . . . . . . . . . . . . . . . . . .   <a href="#page-6">6</a>
-   <a href="#section-3">3</a>.  GeoJSON Object  . . . . . . . . . . . . . . . . . . . . . . .   <a href="#page-6">6</a>
-     <a href="#section-3.1">3.1</a>.  Geometry Object . . . . . . . . . . . . . . . . . . . . .   <a href="#page-7">7</a>
-       <a href="#section-3.1.1">3.1.1</a>.  Position  . . . . . . . . . . . . . . . . . . . . . .   <a href="#page-7">7</a>
-       <a href="#section-3.1.2">3.1.2</a>.  Point . . . . . . . . . . . . . . . . . . . . . . . .   <a href="#page-8">8</a>
-       <a href="#section-3.1.3">3.1.3</a>.  MultiPoint  . . . . . . . . . . . . . . . . . . . . .   <a href="#page-8">8</a>
-       <a href="#section-3.1.4">3.1.4</a>.  LineString  . . . . . . . . . . . . . . . . . . . . .   <a href="#page-8">8</a>
-       <a href="#section-3.1.5">3.1.5</a>.  MultiLineString . . . . . . . . . . . . . . . . . . .   <a href="#page-8">8</a>
-       <a href="#section-3.1.6">3.1.6</a>.  Polygon . . . . . . . . . . . . . . . . . . . . . . .   <a href="#page-9">9</a>
-       <a href="#section-3.1.7">3.1.7</a>.  MultiPolygon  . . . . . . . . . . . . . . . . . . . .   <a href="#page-9">9</a>
-       <a href="#section-3.1.8">3.1.8</a>.  GeometryCollection  . . . . . . . . . . . . . . . . .   <a href="#page-9">9</a>
-       <a href="#section-3.1.9">3.1.9</a>.  Antimeridian Cutting  . . . . . . . . . . . . . . . .  <a href="#page-10">10</a>
-       <a href="#section-3.1.10">3.1.10</a>. Uncertainty and Precision . . . . . . . . . . . . . .  <a href="#page-11">11</a>
-     <a href="#section-3.2">3.2</a>.  Feature Object  . . . . . . . . . . . . . . . . . . . . .  <a href="#page-11">11</a>
-     <a href="#section-3.3">3.3</a>.  FeatureCollection Object  . . . . . . . . . . . . . . . .  <a href="#page-12">12</a>
-   <a href="#section-4">4</a>.  Coordinate Reference System . . . . . . . . . . . . . . . . .  <a href="#page-12">12</a>
-   <a href="#section-5">5</a>.  Bounding Box  . . . . . . . . . . . . . . . . . . . . . . . .  <a href="#page-12">12</a>
-     <a href="#section-5.1">5.1</a>.  The Connecting Lines  . . . . . . . . . . . . . . . . . .  <a href="#page-14">14</a>
-     <a href="#section-5.2">5.2</a>.  The Antimeridian  . . . . . . . . . . . . . . . . . . . .  <a href="#page-14">14</a>
-     <a href="#section-5.3">5.3</a>.  The Poles . . . . . . . . . . . . . . . . . . . . . . . .  <a href="#page-14">14</a>
-   <a href="#section-6">6</a>.  Extending GeoJSON . . . . . . . . . . . . . . . . . . . . . .  <a href="#page-15">15</a>
-     <a href="#section-6.1">6.1</a>.  Foreign Members . . . . . . . . . . . . . . . . . . . . .  <a href="#page-15">15</a>
-   <a href="#section-7">7</a>.  GeoJSON Types Are Not Extensible  . . . . . . . . . . . . . .  <a href="#page-16">16</a>
-     7.1.  Semantics of GeoJSON Members and Types Are Not Changeable  16
-   <a href="#section-8">8</a>.  Versioning  . . . . . . . . . . . . . . . . . . . . . . . . .  <a href="#page-17">17</a>
-   <a href="#section-9">9</a>.  Mapping 'geo' URIs  . . . . . . . . . . . . . . . . . . . . .  <a href="#page-17">17</a>
-   <a href="#section-10">10</a>. Security Considerations . . . . . . . . . . . . . . . . . . .  <a href="#page-18">18</a>
-   <a href="#section-11">11</a>. Interoperability Considerations . . . . . . . . . . . . . . .  <a href="#page-18">18</a>
-     <a href="#section-11.1">11.1</a>.  I-JSON . . . . . . . . . . . . . . . . . . . . . . . . .  <a href="#page-18">18</a>
-     <a href="#section-11.2">11.2</a>.  Coordinate Precision . . . . . . . . . . . . . . . . . .  <a href="#page-18">18</a>
-   <a href="#section-12">12</a>. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  <a href="#page-19">19</a>
-   <a href="#section-13">13</a>. References  . . . . . . . . . . . . . . . . . . . . . . . . .  <a href="#page-20">20</a>
-     <a href="#section-13.1">13.1</a>.  Normative References . . . . . . . . . . . . . . . . . .  <a href="#page-20">20</a>
-     <a href="#section-13.2">13.2</a>.  Informative References . . . . . . . . . . . . . . . . .  <a href="#page-21">21</a>
-   <a href="#appendix-A">Appendix A</a>.  Geometry Examples  . . . . . . . . . . . . . . . . .  <a href="#page-22">22</a>
-     <a href="#appendix-A.1">A.1</a>.  Points  . . . . . . . . . . . . . . . . . . . . . . . . .  <a href="#page-22">22</a>
-     <a href="#appendix-A.2">A.2</a>.  LineStrings . . . . . . . . . . . . . . . . . . . . . . .  <a href="#page-22">22</a>
-     <a href="#appendix-A.3">A.3</a>.  Polygons  . . . . . . . . . . . . . . . . . . . . . . . .  <a href="#page-23">23</a>
-     <a href="#appendix-A.4">A.4</a>.  MultiPoints . . . . . . . . . . . . . . . . . . . . . . .  <a href="#page-24">24</a>
-     <a href="#appendix-A.5">A.5</a>.  MultiLineStrings  . . . . . . . . . . . . . . . . . . . .  <a href="#page-24">24</a>
-     <a href="#appendix-A.6">A.6</a>.  MultiPolygons . . . . . . . . . . . . . . . . . . . . . .  <a href="#page-25">25</a>
-     <a href="#appendix-A.7">A.7</a>.  GeometryCollections . . . . . . . . . . . . . . . . . . .  <a href="#page-26">26</a>
-   <a href="#appendix-B">Appendix B</a>.  Changes from the Pre-IETF GeoJSON Format
-                Specification  . . . . . . . . . . . . . . . . . . .  <a href="#page-26">26</a>
-     <a href="#appendix-B.1">B.1</a>.  Normative Changes . . . . . . . . . . . . . . . . . . . .  <a href="#page-26">26</a>
-     <a href="#appendix-B.2">B.2</a>.  Informative Changes . . . . . . . . . . . . . . . . . . .  <a href="#page-27">27</a>
-   <a href="#appendix-C">Appendix C</a>.  GeoJSON Text Sequences . . . . . . . . . . . . . . .  <a href="#page-27">27</a>
-   Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . .  <a href="#page-27">27</a>
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  <a href="#page-28">28</a>
-</pre>
+<div class="toc">
+&nbsp;<a href="#section-1">1</a>.  Introduction <br> 
+&nbsp;&nbsp;<a href="#section-1.1">1.1</a>.  Requirements Language <br>
+&nbsp;&nbsp;<a href="#section-1.2">1.2</a>.  Conventions Used in This Document <br>
+&nbsp;&nbsp;<a href="#section-1.3">1.3</a>.  Specification of GeoJSON  <br>
+&nbsp;&nbsp;<a href="#section-1.4">1.4</a>.  Definitions <br>
+&nbsp;&nbsp;<a href="#section-1.5">1.5</a>.  Example <br>
+&nbsp;<a href="#section-2">2</a>.  GeoJSON Text  <br>
+&nbsp;<a href="#section-3">3</a>.  GeoJSON Object  <br>
+&nbsp;&nbsp;<a href="#section-3.1">3.1</a>.  Geometry Object <br>
+&nbsp;&nbsp;<a href="#section-3.1.1">3.1.1</a>.  Position  <br>
+&nbsp;&nbsp;<a href="#section-3.1.2">3.1.2</a>.  Point <br>
+&nbsp;&nbsp;<a href="#section-3.1.3">3.1.3</a>.  MultiPoint  <br>
+&nbsp;&nbsp;<a href="#section-3.1.4">3.1.4</a>.  LineString  <br>
+&nbsp;&nbsp;<a href="#section-3.1.5">3.1.5</a>.  MultiLineString <br>
+&nbsp;&nbsp;<a href="#section-3.1.6">3.1.6</a>.  Polygon <br>
+&nbsp;&nbsp;<a href="#section-3.1.7">3.1.7</a>.  MultiPolygon  <br>
+&nbsp;&nbsp;<a href="#section-3.1.8">3.1.8</a>.  GeometryCollection  <br>
+&nbsp;&nbsp;<a href="#section-3.1.9">3.1.9</a>.  Antimeridian Cutting  <br>
+&nbsp;&nbsp;<a href="#section-3.1.10">3.1.10</a>. Uncertainty and Precision <br>
+&nbsp;&nbsp;<a href="#section-3.2">3.2</a>.  Feature Object  <br>
+&nbsp;&nbsp;<a href="#section-3.3">3.3</a>.  FeatureCollection Object  <br>
+&nbsp;<a href="#section-4">4</a>.  Coordinate Reference System <br>
+&nbsp;<a href="#section-5">5</a>.  Bounding Box  <br>
+&nbsp;&nbsp;<a href="#section-5.1">5.1</a>.  The Connecting Lines  <br>
+&nbsp;&nbsp;<a href="#section-5.2">5.2</a>.  The Antimeridian  <br>
+&nbsp;&nbsp;<a href="#section-5.3">5.3</a>.  The Poles <br>
+&nbsp;<a href="#section-6">6</a>.  Extending GeoJSON <br>
+&nbsp;&nbsp;<a href="#section-6.1">6.1</a>.  Foreign Members <br>
+&nbsp;<a href="#section-7">7</a>.  GeoJSON Types Are Not Extensible  <br>
+     7.1.  Semantics of GeoJSON Members and Types Are Not Changeable<br>
+&nbsp;<a href="#section-8">8</a>.  Versioning  <br>
+&nbsp;<a href="#section-9">9</a>.  Mapping 'geo' URIs  <br>
+&nbsp;<a href="#section-10">10</a>. Security Considerations <br>
+&nbsp;<a href="#section-11">11</a>. Interoperability Considerations <br>
+&nbsp;&nbsp;<a href="#section-11.1">11.1</a>.  I-JSON <br>
+&nbsp;&nbsp;<a href="#section-11.2">11.2</a>.  Coordinate Precision <br>
+&nbsp;<a href="#section-12">12</a>. IANA Considerations <br>
+&nbsp;<a href="#section-13">13</a>. References  <br>
+&nbsp;&nbsp;<a href="#section-13.1">13.1</a>.  Normative References <br>
+&nbsp;&nbsp;<a href="#section-13.2">13.2</a>.  Informative References <br>
+&nbsp;<a href="#appendix-A">Appendix A</a>.  Geometry Examples  <br>
+&nbsp;&nbsp;<a href="#appendix-A.1">A.1</a>.  Points  <br>
+&nbsp;&nbsp;<a href="#appendix-A.2">A.2</a>.  LineStrings <br>
+&nbsp;&nbsp;<a href="#appendix-A.3">A.3</a>.  Polygons  <br>
+&nbsp;&nbsp;<a href="#appendix-A.4">A.4</a>.  MultiPoints <br>
+&nbsp;&nbsp;<a href="#appendix-A.5">A.5</a>.  MultiLineStrings  <br>
+&nbsp;&nbsp;<a href="#appendix-A.6">A.6</a>.  MultiPolygons <br>
+&nbsp;&nbsp;<a href="#appendix-A.7">A.7</a>.  GeometryCollections <br>
+&nbsp;<a href="#appendix-B">Appendix B</a>.  Changes from the Pre-IETF GeoJSON Format<br>
+                Specification  <br>
+&nbsp;&nbsp;<a href="#appendix-B.1">B.1</a>.  Normative Changes <br>
+&nbsp;&nbsp;<a href="#appendix-B.2">B.2</a>.  Informative Changes <br>
+&nbsp;<a href="#appendix-C">Appendix C</a>.  GeoJSON Text Sequences <br>
+   Acknowledgements  <br>
+   Authors' Addresses  <br>
+</div>
 <span class="h2"><h2><a class="selflink" name="section-1" href="#section-1">1</a>.  Introduction</h2></span>
 
    GeoJSON is a format for encoding a variety of geographic data
@@ -1546,10 +1566,11 @@ ISSN: 2070-1721                                                  Cadcorp
    Email: tim.schaub@gmail.com
 
 </div><br>
-    <span class="noprint"><small><small>Html markup produced by rfcmarkup 1.127, available from
+<!--     <span class="noprint"><small><small>Html markup produced by rfcmarkup 1.127, available from
       <a href="https://tools.ietf.org/tools/rfcmarkup/">https://tools.ietf.org/tools/rfcmarkup/</a>
     </small></small></span>
-  </div>
+ -->  
+</div>
 
 
 </body></html>
