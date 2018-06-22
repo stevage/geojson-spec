@@ -134,6 +134,12 @@ System 1984, and units of decimal degrees.">
             .legend   { font-size: 90%; }
             .cplate   { font-size: 70%; border: solid grey 1px; }
 	}
+
+    ul { 
+        white-space: normal;
+        margin-left:1em;
+    }
+
     </style>
     <!--[if IE]>
     <style>
@@ -375,24 +381,31 @@ Table of Contents
 
 <span class="h3"><h3><a class="selflink" name="section-1.4" href="#section-1.4">1.4</a>.  Definitions</h3></span>
 
-   o  JavaScript Object Notation (JSON), and the terms object, member,
+  <!-- </pre> -->
+  <ul>
+  <li>JavaScript Object Notation (JSON), and the terms object, member,
       name, value, array, number, true, false, and null, are to be
       interpreted as defined in [<a href="https://tools.ietf.org/html/rfc7159" title="&quot;The JavaScript Object Notation (JSON) Data Interchange Format&quot;">RFC7159</a>].
 
-   o  Inside this document, the term "geometry type" refers to seven
+  </li>
+  <li>Inside this document, the term "geometry type" refers to seven
       case-sensitive strings: "Point", "MultiPoint", "LineString",
       "MultiLineString", "Polygon", "MultiPolygon", and
       "GeometryCollection".
 
-   o  As another shorthand notation, the term "GeoJSON types" refers to
+  </li>
+  <li>As another shorthand notation, the term "GeoJSON types" refers to
       nine case-sensitive strings: "Feature", "FeatureCollection", and
       the geometry types listed above.
 
-   o  The word "Collection" in "FeatureCollection" and
+  </li>
+  <li>The word "Collection" in "FeatureCollection" and
       "GeometryCollection" does not have any significance for the
       semantics of array members.  The "features" and "geometries"
       members, respectively, of these objects are standard ordered JSON
       arrays, not unordered sets.
+  </li>
+</ul>
 
 <span class="h3"><h3><a class="selflink" name="section-1.5" href="#section-1.5">1.5</a>.  Example</h3></span>
 
@@ -457,15 +470,21 @@ Table of Contents
    A GeoJSON object represents a Geometry, Feature, or collection of
    Features.
 
-   o  A GeoJSON object is a JSON object.
+<ul>
+  <li>A GeoJSON object is a JSON object.
 
-   o  A GeoJSON object has a member with the name "type".  The value of
+  </li>
+  <li>A GeoJSON object has a member with the name "type".  The value of
       the member MUST be one of the GeoJSON types.
 
-   o  A GeoJSON object MAY have a "bbox" member, the value of which MUST
+  </li>
+  <li>A GeoJSON object MAY have a "bbox" member, the value of which MUST
       be a bounding box array (see <a href="#section-5">Section 5</a>).
 
-   o  A GeoJSON object MAY have other members (see <a href="#section-6">Section 6</a>).
+  </li>
+  <li>A GeoJSON object MAY have other members (see <a href="#section-6">Section 6</a>).
+  </li>
+</ul>
 
 <span class="h3"><h3><a class="selflink" name="section-3.1" href="#section-3.1">3.1</a>.  Geometry Object</h3></span>
 
@@ -473,32 +492,42 @@ Table of Contents
    coordinate space.  Every Geometry object is a GeoJSON object no
    matter where it occurs in a GeoJSON text.
 
-   o  The value of a Geometry object's "type" member MUST be one of the
+<ul>
+  <li>The value of a Geometry object's "type" member MUST be one of the
       seven geometry types (see <a href="#section-1.4">Section 1.4</a>).
 
-   o  A GeoJSON Geometry object of any type other than
+  </li>
+  <li>A GeoJSON Geometry object of any type other than
       "GeometryCollection" has a member with the name "coordinates".
       The value of the "coordinates" member is an array.  The structure
       of the elements in this array is determined by the type of
       geometry.  GeoJSON processors MAY interpret Geometry objects with
       empty "coordinates" arrays as null objects.
+  </li>
+</ul>
 
 <span class="h4"><h4><a class="selflink" name="section-3.1.1" href="#section-3.1.1">3.1.1</a>.  Position</h4></span>
 
    A position is the fundamental geometry construct.  The "coordinates"
    member of a Geometry object is composed of either:
 
-   o  one position in the case of a Point geometry,
+<ul>
+  <li>one position in the case of a Point geometry,
 
-   o  an array of positions in the case of a LineString or MultiPoint
+  </li>
+  <li>an array of positions in the case of a LineString or MultiPoint
       geometry,
 
-   o  an array of LineString or linear ring (see <a href="#section-3.1.6">Section 3.1.6</a>)
+  </li>
+  <li>an array of LineString or linear ring (see <a href="#section-3.1.6">Section 3.1.6</a>)
       coordinates in the case of a Polygon or MultiLineString geometry,
       or
 
-   o  an array of Polygon coordinates in the case of a MultiPolygon
+  </li>
+  <li>an array of Polygon coordinates in the case of a MultiPolygon
       geometry.
+  </li>
+</ul>
 
    A position is an array of numbers.  There MUST be two or more
    elements.  The first two elements are longitude and latitude, or
@@ -564,17 +593,23 @@ Table of Contents
    To specify a constraint specific to Polygons, it is useful to
    introduce the concept of a linear ring:
 
-   o  A linear ring is a closed LineString with four or more positions.
+<ul>
+  <li>A linear ring is a closed LineString with four or more positions.
 
-   o  The first and last positions are equivalent, and they MUST contain
+  </li>
+  <li>The first and last positions are equivalent, and they MUST contain
       identical values; their representation SHOULD also be identical.
 
-   o  A linear ring is the boundary of a surface or the boundary of a
+  </li>
+  <li>A linear ring is the boundary of a surface or the boundary of a
       hole in a surface.
 
-   o  A linear ring MUST follow the right-hand rule with respect to the
+  </li>
+  <li>A linear ring MUST follow the right-hand rule with respect to the
       area it bounds, i.e., exterior rings are counterclockwise, and
       holes are clockwise.
+</li>
+</ul>
 
    Note: the [<a href="#ref-GJ2008" title="&quot;The GeoJSON Format Specification&quot;">GJ2008</a>] specification did not discuss linear ring winding
    order.  For backwards compatibility, parsers SHOULD NOT reject
@@ -584,13 +619,17 @@ Table of Contents
    geometry type, it leads to a canonical formulation of the Polygon
    geometry type definition as follows:
 
-   o  For type "Polygon", the "coordinates" member MUST be an array of
+<ul>
+  <li>For type "Polygon", the "coordinates" member MUST be an array of
       linear ring coordinate arrays.
 
-   o  For Polygons with more than one of these rings, the first MUST be
+  </li>
+  <li>For Polygons with more than one of these rings, the first MUST be
       the exterior ring, and any others MUST be interior rings.  The
       exterior ring bounds the surface, and the interior rings (if
       present) bound holes within the surface.
+</li>
+</ul>
 
 <span class="h4"><h4><a class="selflink" name="section-3.1.7" href="#section-3.1.7">3.1.7</a>.  MultiPolygon</h4></span>
 
@@ -683,21 +722,27 @@ Table of Contents
    object is a GeoJSON object no matter where it occurs in a GeoJSON
    text.
 
-   o  A Feature object has a "type" member with the value "Feature".
+<ul>
+  <li>A Feature object has a "type" member with the value "Feature".
 
-   o  A Feature object has a member with the name "geometry".  The value
+  </li>
+  <li>A Feature object has a member with the name "geometry".  The value
       of the geometry member SHALL be either a Geometry object as
       defined above or, in the case that the Feature is unlocated, a
       JSON null value.
 
-   o  A Feature object has a member with the name "properties".  The
+  </li>
+  <li>A Feature object has a member with the name "properties".  The
       value of the properties member is an object (any JSON object or a
       JSON null value).
 
-   o  If a Feature has a commonly used identifier, that identifier
+  </li>
+  <li>If a Feature has a commonly used identifier, that identifier
       SHOULD be included as a member of the Feature object with the name
       "id", and the value of this member is either a JSON string or
       number.
+</li>
+</ul>
 
 <span class="h3"><h3><a class="selflink" name="section-3.3" href="#section-3.3">3.3</a>.  FeatureCollection Object</h3></span>
 
@@ -1301,50 +1346,69 @@ Table of Contents
 
 <span class="h3"><h3><a class="selflink" name="appendix-B.1" href="#appendix-B.1">B.1</a>.  Normative Changes</h3></span>
 
-   o  Specification of coordinate reference systems has been removed,
+<ul>
+  <li>Specification of coordinate reference systems has been removed,
       i.e., the "crs" member of [<a href="#ref-GJ2008" title="&quot;The GeoJSON Format Specification&quot;">GJ2008</a>] is no longer used.
 
-   o  In the absence of elevation values, applications sensitive to
+  </li>
+  <li>In the absence of elevation values, applications sensitive to
       height or depth SHOULD interpret positions as being at local
       ground or sea level (see <a href="#section-4">Section 4</a>).
 
-   o  Implementations SHOULD NOT extend position arrays beyond 3
+  </li>
+  <li>Implementations SHOULD NOT extend position arrays beyond 3
       elements (see <a href="#section-3.1.1">Section 3.1.1</a>).
 
-   o  A line between two positions is a straight Cartesian line (see
+  </li>
+  <li>A line between two positions is a straight Cartesian line (see
       <a href="#section-3.1.1">Section 3.1.1</a>).
 
-   o  Polygon rings MUST follow the right-hand rule for orientation
+  </li>
+  <li>Polygon rings MUST follow the right-hand rule for orientation
       (counterclockwise external rings, clockwise internal rings).
 
-   o  The values of a "bbox" array are "[west, south, east, north]", not
+  </li>
+  <li>The values of a "bbox" array are "[west, south, east, north]", not
       "[minx, miny, maxx, maxy]" (see <a href="#section-5">Section 5</a>).
 
-   o  A Feature object's "id" member is a string or number (see
+  </li>
+  <li>A Feature object's "id" member is a string or number (see
       <a href="#section-3.2">Section 3.2</a>).
 
-   o  Extensions MAY be used, but MUST NOT change the semantics of
+  </li>
+  <li>Extensions MAY be used, but MUST NOT change the semantics of
       GeoJSON members and types (see <a href="#section-6">Section 6</a>).
 
-   o  GeoJSON objects MUST NOT contain the defining members of other
+  </li>
+  <li>GeoJSON objects MUST NOT contain the defining members of other
       types (see <a href="#section-7.1">Section 7.1</a>).
 
-   o  The media type for GeoJSON is "application/geo+json".
+  </li>
+  <li>The media type for GeoJSON is "application/geo+json".
+</li>
+</ul>
 
 <span class="h3"><h3><a class="selflink" name="appendix-B.2" href="#appendix-B.2">B.2</a>.  Informative Changes</h3></span>
 
-   o  The definition of a GeoJSON text has been added.
+<ul>
+  <li>The definition of a GeoJSON text has been added.
 
-   o  Rules for mapping 'geo' URIs have been added.
+  </li>
+  <li>Rules for mapping 'geo' URIs have been added.
 
-   o  A recommendation of the I-JSON [<a href="https://tools.ietf.org/html/rfc7493" title="&quot;The I-JSON Message Format&quot;">RFC7493</a>] constraints has been
+  </li>
+  <li>A recommendation of the I-JSON [<a href="https://tools.ietf.org/html/rfc7493" title="&quot;The I-JSON Message Format&quot;">RFC7493</a>] constraints has been
       added.
 
-   o  Implementers are cautioned about the effect of excessive
+  </li>
+  <li>Implementers are cautioned about the effect of excessive
       coordinate precision on interoperability.
 
-   o  Interoperability concerns of GeometryCollections are noted.  These
+  </li>
+  <li>Interoperability concerns of GeometryCollections are noted.  These
       objects should be used sparingly (see <a href="#section-3.1.8">Section 3.1.8</a>).
+</li>
+</ul>
 
 <span class="h2"><h2><a class="selflink" name="appendix-C" href="#appendix-C">Appendix C</a>.  GeoJSON Text Sequences</h2></span>
 
