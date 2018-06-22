@@ -146,16 +146,18 @@ System 1984, and units of decimal degrees.">
 
 
 
-    samp {
-        white-space: pre;
+    samp,code {
         font-family: 'Inconsolata', monospace;
         color:darkblue;
         margin-bottom:1em;
-        display:block;
         font-size:0.8rem;
         line-height:1;
         /*font-weight:bold;*/
     }
+    samp {
+      white-space: pre;
+      display:block;
+   }
 
     .main-body {
         font-family:sans-serif;
@@ -1019,8 +1021,6 @@ ISSN: 2070-1721                                                  Cadcorp
    GeoJSON semantics do not apply to foreign members and their
    descendants, regardless of their names and values.  For example, in
    the (abridged) <span class="gj-type">Feature</span> object below
-   <p>
-
    <samp>
    {
        "type": "Feature",
@@ -1083,31 +1083,27 @@ ISSN: 2070-1721                                                  Cadcorp
    each other.  A GeoJSON <span class="gj-type">Point</span> is always converted to a 'geo' URI that
    has no uncertainty parameter.<p>
 
-   'geo' URI:
-
-   <samp>
-   geo:lat,lon
-    </samp>
+   'geo' URI: <code>geo:lat,lon</code>
+   <p>
 
    GeoJSON:
 
-   <samp>
+   <code>
    {"type": "Point", "coordinates": [lon, lat]}
-    </samp>
+    </code>
+
+    <p>
 
    The mapping between 'geo' URIs and GeoJSON <span class="gj-type">Point</span>s that specify
    elevation is shown below.<p>
 
-   'geo' URI:
-
-   <samp>
-   geo:lat,lon,alt
-   </samp>
-
+   'geo' URI: <code>geo:lat,lon,alt</code>
+   <p>
    GeoJSON:
-   <samp>
+   <code>
    {"type": "Point", "coordinates": [lon, lat, alt]}
-</samp>
+   </code>
+   <p>
 
    GeoJSON has no concept of uncertainty; imprecise or uncertain 'geo'
    URIs thus cannot be mapped to GeoJSON geometries.
