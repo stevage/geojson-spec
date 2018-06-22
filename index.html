@@ -66,10 +66,11 @@ System 1984, and units of decimal degrees.">
 	       font-weight: bold;
             font-family:sans-serif;
     	    font-weight: bold;
-            color:green;
+            color:green !important;
         }
-        h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-            color:green;
+        h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
+        h1 span, h2 span, h3 span, h4 span {
+            color:green !important;
         }
         pre {
             font-size: 1em;
@@ -197,6 +198,11 @@ System 1984, and units of decimal degrees.">
 
     .disclaimer h3 {
         color:black;
+    }
+
+    .gj-type {
+        color: hsl(0,80%,35%);
+        font-weight:bold;
     }
 
     </style>
@@ -452,18 +458,18 @@ ISSN: 2070-1721                                                  Cadcorp
 
   </li>
   <li>Inside this document, the term "geometry type" refers to seven
-      case-sensitive strings: "Point", "MultiPoint", "LineString",
-      "MultiLineString", "Polygon", "MultiPolygon", and
-      "GeometryCollection".
+      case-sensitive strings: "<span class="gj-type">Point</span>", "<span class="gj-type">MultiPoint</span>", "<span class="gj-type">LineString</span>",
+      "<span class="gj-type">MultiLineString</span>", "<span class="gj-type">Polygon</span>", "<span class="gj-type">MultiPolygon</span>", and
+      "<span class="gj-type">GeometryCollection</span>".
 
   </li>
   <li>As another shorthand notation, the term "GeoJSON types" refers to
-      nine case-sensitive strings: "Feature", "FeatureCollection", and
+      nine case-sensitive strings: "<span class="gj-type">Feature</span>", "<span class="gj-type">FeatureCollection</span>", and
       the geometry types listed above.
 
   </li>
-  <li>The word "Collection" in "FeatureCollection" and
-      "GeometryCollection" does not have any significance for the
+  <li>The word "Collection" in "<span class="gj-type">FeatureCollection</span>" and
+      "<span class="gj-type">GeometryCollection</span>" does not have any significance for the
       semantics of array members.  The "features" and "geometries"
       members, respectively, of these objects are standard ordered JSON
       arrays, not unordered sets.
@@ -472,7 +478,7 @@ ISSN: 2070-1721                                                  Cadcorp
 
 <span class="h3"><h3><a class="selflink" name="section-1.5" href="#section-1.5">1.5</a>.  Example</h3></span>
 
-   A GeoJSON FeatureCollection:
+   A GeoJSON <span class="gj-type">FeatureCollection</span>:
 
    <samp>
    {
@@ -533,7 +539,7 @@ ISSN: 2070-1721                                                  Cadcorp
 
 <span class="h2"><h2><a class="selflink" name="section-3" href="#section-3">3</a>.  GeoJSON Object</h2></span>
 
-   A GeoJSON object represents a Geometry, Feature, or collection of
+   A GeoJSON object represents a <span class="gj-type">Geometry</span>, <span class="gj-type">Feature</span>, or collection of
    Features.
 
 <ul>
@@ -552,22 +558,22 @@ ISSN: 2070-1721                                                  Cadcorp
   </li>
 </ul>
 
-<span class="h3"><h3><a class="selflink" name="section-3.1" href="#section-3.1">3.1</a>.  Geometry Object</h3></span>
+<span class="h3"><h3><a class="selflink" name="section-3.1" href="#section-3.1">3.1</a>.  <span class="gj-type">Geometry</span> Object</h3></span>
 
-   A Geometry object represents points, curves, and surfaces in
-   coordinate space.  Every Geometry object is a GeoJSON object no
+   A <span class="gj-type">Geometry</span> object represents points, curves, and surfaces in
+   coordinate space.  Every <span class="gj-type">Geometry</span> object is a GeoJSON object no
    matter where it occurs in a GeoJSON text.
 
 <ul>
-  <li>The value of a Geometry object's "type" member MUST be one of the
+  <li>The value of a <span class="gj-type">Geometry</span> object's "type" member MUST be one of the
       seven geometry types (see <a href="#section-1.4">Section 1.4</a>).
 
   </li>
-  <li>A GeoJSON Geometry object of any type other than
-      "GeometryCollection" has a member with the name "coordinates".
+  <li>A GeoJSON <span class="gj-type">Geometry</span> object of any type other than
+      "<span class="gj-type">GeometryCollection</span>" has a member with the name "coordinates".
       The value of the "coordinates" member is an array.  The structure
       of the elements in this array is determined by the type of
-      geometry.  GeoJSON processors MAY interpret Geometry objects with
+      geometry.  GeoJSON processors MAY interpret <span class="gj-type">Geometry</span> objects with
       empty "coordinates" arrays as null objects.
   </li>
 </ul>
@@ -575,22 +581,22 @@ ISSN: 2070-1721                                                  Cadcorp
 <span class="h4"><h4><a class="selflink" name="section-3.1.1" href="#section-3.1.1">3.1.1</a>.  Position</h4></span>
 
    A position is the fundamental geometry construct.  The "coordinates"
-   member of a Geometry object is composed of either:
+   member of a <span class="gj-type">Geometry</span> object is composed of either:
 
 <ul>
-  <li>one position in the case of a Point geometry,
+  <li>one position in the case of a <span class="gj-type">Point</span> geometry,
 
   </li>
-  <li>an array of positions in the case of a LineString or MultiPoint
+  <li>an array of positions in the case of a <span class="gj-type">LineString</span> or <span class="gj-type">MultiPoint</span>
       geometry,
 
   </li>
-  <li>an array of LineString or linear ring (see <a href="#section-3.1.6">Section 3.1.6</a>)
-      coordinates in the case of a Polygon or MultiLineString geometry,
+  <li>an array of <span class="gj-type">LineString</span> or linear ring (see <a href="#section-3.1.6">Section 3.1.6</a>)
+      coordinates in the case of a <span class="gj-type">Polygon</span> or <span class="gj-type">MultiLineString</span> geometry,
       or
 
   </li>
-  <li>an array of Polygon coordinates in the case of a MultiPolygon
+  <li>an array of <span class="gj-type">Polygon</span> coordinates in the case of a <span class="gj-type">MultiPolygon</span>
       geometry.
   </li>
 </ul>
@@ -635,32 +641,32 @@ ISSN: 2070-1721                                                  Cadcorp
    Examples of positions and geometries are provided in <a href="#appendix-A">Appendix A</a>,
    "Geometry Examples".<p>
 
-<span class="h4"><h4><a class="selflink" name="section-3.1.2" href="#section-3.1.2">3.1.2</a>.  Point</h4></span>
+<span class="h4"><h4><a class="selflink" name="section-3.1.2" href="#section-3.1.2">3.1.2</a>.  <span class="gj-type">Point</span></h4></span>
 
-   For type "Point", the "coordinates" member is a single position.
+   For type "<span class="gj-type">Point</span>", the "coordinates" member is a single position.
 
-<span class="h4"><h4><a class="selflink" name="section-3.1.3" href="#section-3.1.3">3.1.3</a>.  MultiPoint</h4></span>
+<span class="h4"><h4><a class="selflink" name="section-3.1.3" href="#section-3.1.3">3.1.3</a>.  <span class="gj-type">MultiPoint</span></h4></span>
 
-   For type "MultiPoint", the "coordinates" member is an array of
+   For type "<span class="gj-type">MultiPoint</span>", the "coordinates" member is an array of
    positions.
 
-<span class="h4"><h4><a class="selflink" name="section-3.1.4" href="#section-3.1.4">3.1.4</a>.  LineString</h4></span>
+<span class="h4"><h4><a class="selflink" name="section-3.1.4" href="#section-3.1.4">3.1.4</a>.  <span class="gj-type">LineString</span></h4></span>
 
-   For type "LineString", the "coordinates" member is an array of two or
+   For type "<span class="gj-type">LineString</span>", the "coordinates" member is an array of two or
    more positions.
 
-<span class="h4"><h4><a class="selflink" name="section-3.1.5" href="#section-3.1.5">3.1.5</a>.  MultiLineString</h4></span>
+<span class="h4"><h4><a class="selflink" name="section-3.1.5" href="#section-3.1.5">3.1.5</a>.  <span class="gj-type">MultiLineString</span></h4></span>
 
-   For type "MultiLineString", the "coordinates" member is an array of
-   LineString coordinate arrays.
+   For type "<span class="gj-type">MultiLineString</span>", the "coordinates" member is an array of
+   <span class="gj-type">LineString</span> coordinate arrays.
 
-<span class="h4"><h4><a class="selflink" name="section-3.1.6" href="#section-3.1.6">3.1.6</a>.  Polygon</h4></span>
+<span class="h4"><h4><a class="selflink" name="section-3.1.6" href="#section-3.1.6">3.1.6</a>.  <span class="gj-type">Polygon</span></h4></span>
 
    To specify a constraint specific to Polygons, it is useful to
    introduce the concept of a linear ring:
 
 <ul>
-  <li>A linear ring is a closed LineString with four or more positions.
+  <li>A linear ring is a closed <span class="gj-type">LineString</span> with four or more positions.
 
   </li>
   <li>The first and last positions are equivalent, and they MUST contain
@@ -682,11 +688,11 @@ ISSN: 2070-1721                                                  Cadcorp
    Polygons that do not follow the right-hand rule.
 
    Though a linear ring is not explicitly represented as a GeoJSON
-   geometry type, it leads to a canonical formulation of the Polygon
+   geometry type, it leads to a canonical formulation of the <span class="gj-type">Polygon</span>
    geometry type definition as follows:
 
 <ul>
-  <li>For type "Polygon", the "coordinates" member MUST be an array of
+  <li>For type "<span class="gj-type">Polygon</span>", the "coordinates" member MUST be an array of
       linear ring coordinate arrays.
 
   </li>
@@ -697,30 +703,30 @@ ISSN: 2070-1721                                                  Cadcorp
 </li>
 </ul>
 
-<span class="h4"><h4><a class="selflink" name="section-3.1.7" href="#section-3.1.7">3.1.7</a>.  MultiPolygon</h4></span>
+<span class="h4"><h4><a class="selflink" name="section-3.1.7" href="#section-3.1.7">3.1.7</a>.  <span class="gj-type">MultiPolygon</span></h4></span>
 
-   For type "MultiPolygon", the "coordinates" member is an array of
-   Polygon coordinate arrays.
+   For type "<span class="gj-type">MultiPolygon</span>", the "coordinates" member is an array of
+   <span class="gj-type">Polygon</span> coordinate arrays.
 
-<span class="h4"><h4><a class="selflink" name="section-3.1.8" href="#section-3.1.8">3.1.8</a>.  GeometryCollection</h4></span>
+<span class="h4"><h4><a class="selflink" name="section-3.1.8" href="#section-3.1.8">3.1.8</a>.  <span class="gj-type">GeometryCollection</span></h4></span>
 
-   A GeoJSON object with type "GeometryCollection" is a Geometry object.
-   A GeometryCollection has a member with the name "geometries".  The
+   A GeoJSON object with type "<span class="gj-type">GeometryCollection</span>" is a <span class="gj-type">Geometry</span> object.
+   A <span class="gj-type">GeometryCollection</span> has a member with the name "geometries".  The
    value of "geometries" is an array.  Each element of this array is a
-   GeoJSON Geometry object.  It is possible for this array to be empty.
+   GeoJSON <span class="gj-type">Geometry</span> object.  It is possible for this array to be empty.
 <p>
-   Unlike the other geometry types described above, a GeometryCollection
-   can be a heterogeneous composition of smaller Geometry objects.  For
-   example, a Geometry object in the shape of a lowercase roman "i" can
-   be composed of one point and one LineString.
+   Unlike the other geometry types described above, a <span class="gj-type">GeometryCollection</span>
+   can be a heterogeneous composition of smaller <span class="gj-type">Geometry</span> objects.  For
+   example, a <span class="gj-type">Geometry</span> object in the shape of a lowercase roman "i" can
+   be composed of one point and one <span class="gj-type">LineString</span>.
 <p>
-   GeometryCollections have a different syntax from single type Geometry
-   objects (Point, LineString, and Polygon) and homogeneously typed
-   multipart Geometry objects (MultiPoint, MultiLineString, and
-   MultiPolygon) but have no different semantics.  Although a
-   GeometryCollection object has no "coordinates" member, it does have
+   GeometryCollections have a different syntax from single type <span class="gj-type">Geometry</span>
+   objects (<span class="gj-type">Point</span>, <span class="gj-type">LineString</span>, and <span class="gj-type">Polygon</span>) and homogeneously typed
+   multipart <span class="gj-type">Geometry</span> objects (<span class="gj-type">MultiPoint</span>, <span class="gj-type">MultiLineString</span>, and
+   <span class="gj-type">MultiPolygon</span>) but have no different semantics.  Although a
+   <span class="gj-type">GeometryCollection</span> object has no "coordinates" member, it does have
    coordinates: the coordinates of all its parts belong to the
-   collection.  The "geometries" member of a GeometryCollection
+   collection.  The "geometries" member of a <span class="gj-type">GeometryCollection</span>
    describes the parts of this composition.  Implementations SHOULD NOT
    apply any additional semantics to the "geometries" array.
 <p>
@@ -728,7 +734,7 @@ ISSN: 2070-1721                                                  Cadcorp
    GeometryCollections.  Furthermore, GeometryCollections composed of a
    single part or a number of parts of a single type SHOULD be avoided
    when that single part or a single object of multipart type
-   (MultiPoint, MultiLineString, or MultiPolygon) could be used instead.
+   (<span class="gj-type">MultiPoint</span>, <span class="gj-type">MultiLineString</span>, or <span class="gj-type">MultiPolygon</span>) could be used instead.
 <p>
 <span class="h4"><h4><a class="selflink" name="section-3.1.9" href="#section-3.1.9">3.1.9</a>.  Antimeridian Cutting</h4></span>
 
@@ -740,7 +746,7 @@ ISSN: 2070-1721                                                  Cadcorp
 
    For example, a line extending from 45 degrees N, 170 degrees E across
    the antimeridian to 45 degrees N, 170 degrees W should be cut in two
-   and represented as a MultiLineString.
+   and represented as a <span class="gj-type">MultiLineString</span>.
 
    <samp>
    {
@@ -757,7 +763,7 @@ ISSN: 2070-1721                                                  Cadcorp
 
    A rectangle extending from 40 degrees N, 170 degrees E across the
    antimeridian to 50 degrees N, 170 degrees W should be cut in two and
-   represented as a MultiPolygon.
+   represented as a <span class="gj-type">MultiPolygon</span>.
 
    <samp>
    {
@@ -785,40 +791,40 @@ ISSN: 2070-1721                                                  Cadcorp
    positions MUST NOT be interpreted as an indication to the level of
    uncertainty.
 
-<span class="h3"><h3><a class="selflink" name="section-3.2" href="#section-3.2">3.2</a>.  Feature Object</h3></span>
+<span class="h3"><h3><a class="selflink" name="section-3.2" href="#section-3.2">3.2</a>.  <span class="gj-type">Feature</span> Object</h3></span>
 
-   A Feature object represents a spatially bounded thing.  Every Feature
+   A <span class="gj-type">Feature</span> object represents a spatially bounded thing.  Every <span class="gj-type">Feature</span>
    object is a GeoJSON object no matter where it occurs in a GeoJSON
    text.
 
 <ul>
-  <li>A Feature object has a "type" member with the value "Feature".
+  <li>A <span class="gj-type">Feature</span> object has a "type" member with the value "<span class="gj-type">Feature</span>".
 
   </li>
-  <li>A Feature object has a member with the name "geometry".  The value
-      of the geometry member SHALL be either a Geometry object as
-      defined above or, in the case that the Feature is unlocated, a
+  <li>A <span class="gj-type">Feature</span> object has a member with the name "geometry".  The value
+      of the geometry member SHALL be either a <span class="gj-type">Geometry</span> object as
+      defined above or, in the case that the <span class="gj-type">Feature</span> is unlocated, a
       JSON null value.
 
   </li>
-  <li>A Feature object has a member with the name "properties".  The
+  <li>A <span class="gj-type">Feature</span> object has a member with the name "properties".  The
       value of the properties member is an object (any JSON object or a
       JSON null value).
 
   </li>
-  <li>If a Feature has a commonly used identifier, that identifier
-      SHOULD be included as a member of the Feature object with the name
+  <li>If a <span class="gj-type">Feature</span> has a commonly used identifier, that identifier
+      SHOULD be included as a member of the <span class="gj-type">Feature</span> object with the name
       "id", and the value of this member is either a JSON string or
       number.
 </li>
 </ul>
 
-<span class="h3"><h3><a class="selflink" name="section-3.3" href="#section-3.3">3.3</a>.  FeatureCollection Object</h3></span>
+<span class="h3"><h3><a class="selflink" name="section-3.3" href="#section-3.3">3.3</a>.  <span class="gj-type">FeatureCollection</span> Object</h3></span>
 
-   A GeoJSON object with the type "FeatureCollection" is a
-   FeatureCollection object.  A FeatureCollection object has a member
+   A GeoJSON object with the type "<span class="gj-type">FeatureCollection</span>" is a
+   <span class="gj-type">FeatureCollection</span> object.  A <span class="gj-type">FeatureCollection</span> object has a member
    with the name "features".  The value of "features" is a JSON array.
-   Each element of the array is a Feature object as defined above.  It
+   Each element of the array is a <span class="gj-type">Feature</span> object as defined above.  It
    is possible for this array to be empty.
 
 <span class="h2"><h2><a class="selflink" name="section-4" href="#section-4">4</a>.  Coordinate Reference System</h2></span>
@@ -859,7 +865,7 @@ ISSN: 2070-1721                                                  Cadcorp
    The "bbox" values define shapes with edges that follow lines of
    constant longitude, latitude, and elevation.<p>
 
-   Example of a 2D bbox member on a Feature:
+   Example of a 2D bbox member on a <span class="gj-type">Feature</span>:
 
    <samp>
 
@@ -882,7 +888,7 @@ ISSN: 2070-1721                                                  Cadcorp
 
 </samp>
 
-   Example of a 2D bbox member on a FeatureCollection:
+   Example of a 2D bbox member on a <span class="gj-type">FeatureCollection</span>:
 
    <samp>
    {
@@ -927,7 +933,7 @@ ISSN: 2070-1721                                                  Cadcorp
    The southwest corner of the box containing these Features is at 20
    degrees S and 177 degrees E, and the northwest corner is at 16
    degrees S and 178 degrees W.  The antimeridian-spanning GeoJSON
-   bounding box for this FeatureCollection is
+   bounding box for this <span class="gj-type">FeatureCollection</span> is
    <p>
 
    <samp>"bbox": [177.0, -20.0, -178.0, -16.0]</samp>
@@ -995,7 +1001,7 @@ ISSN: 2070-1721                                                  Cadcorp
    rely too heavily on the use of foreign members might experience
    reduced interoperability with other implementations.
 <p>
-   For example, in the (abridged) Feature object shown below
+   For example, in the (abridged) <span class="gj-type">Feature</span> object shown below
    <samp>
    {
        "type": "Feature",
@@ -1005,14 +1011,14 @@ ISSN: 2070-1721                                                  Cadcorp
        "title": "Example Feature"
    }
 </samp>
-   the name/value pair of "title": "Example Feature" is a foreign
+   the name/value pair of "title": "Example <span class="gj-type">Feature</span>" is a foreign
    member.  When the value of a foreign member is an object, all the
    descendant members of that object are themselves foreign members.
    <p>
 
    GeoJSON semantics do not apply to foreign members and their
    descendants, regardless of their names and values.  For example, in
-   the (abridged) Feature object below
+   the (abridged) <span class="gj-type">Feature</span> object below
    <p>
 
    <samp>
@@ -1030,29 +1036,29 @@ ISSN: 2070-1721                                                  Cadcorp
        }
    }
 </samp>
-   the "centerline" member is not a GeoJSON Geometry object.
+   the "centerline" member is not a GeoJSON <span class="gj-type">Geometry</span> object.
 
 <span class="h2"><h2><a class="selflink" name="section-7" href="#section-7">7</a>.  GeoJSON Types Are Not Extensible</h2></span>
 
    Implementations MUST NOT extend the fixed set of GeoJSON types:
-   FeatureCollection, Feature, Point, LineString, MultiPoint, Polygon,
-   MultiLineString, MultiPolygon, and GeometryCollection.
+   <span class="gj-type">FeatureCollection</span>, <span class="gj-type">Feature</span>, <span class="gj-type">Point</span>, <span class="gj-type">LineString</span>, <span class="gj-type">MultiPoint</span>, <span class="gj-type">Polygon</span>,
+   <span class="gj-type">MultiLineString</span>, <span class="gj-type">MultiPolygon</span>, and <span class="gj-type">GeometryCollection</span>.
 
 <span class="h3"><h3><a class="selflink" name="section-7.1" href="#section-7.1">7.1</a>.  Semantics of GeoJSON Members and Types Are Not Changeable</h3></span>
 
    Implementations MUST NOT change the semantics of GeoJSON members and
    types.<p>
 
-   The GeoJSON "coordinates" and "geometries" members define Geometry
-   objects.  FeatureCollection and Feature objects, respectively, MUST
+   The GeoJSON "coordinates" and "geometries" members define <span class="gj-type">Geometry</span>
+   objects.  <span class="gj-type">FeatureCollection</span> and <span class="gj-type">Feature</span> objects, respectively, MUST
    NOT contain a "coordinates" or "geometries" member.<p>
 
-   The GeoJSON "geometry" and "properties" members define a Feature
-   object.  FeatureCollection and Geometry objects, respectively, MUST
+   The GeoJSON "geometry" and "properties" members define a <span class="gj-type">Feature</span>
+   object.  <span class="gj-type">FeatureCollection</span> and <span class="gj-type">Geometry</span> objects, respectively, MUST
    NOT contain a "geometry" or "properties" member.<p>
 
-   The GeoJSON "features" member defines a FeatureCollection object.
-   Feature and Geometry objects, respectively, MUST NOT contain a
+   The GeoJSON "features" member defines a <span class="gj-type">FeatureCollection</span> object.
+   <span class="gj-type">Feature</span> and <span class="gj-type">Geometry</span> objects, respectively, MUST NOT contain a
    "features" member.<p>
 
 <span class="h2"><h2><a class="selflink" name="section-8" href="#section-8">8</a>.  Versioning</h2></span>
@@ -1066,15 +1072,15 @@ ISSN: 2070-1721                                                  Cadcorp
 <span class="h2"><h2><a class="selflink" name="section-9" href="#section-9">9</a>.  Mapping 'geo' URIs</h2></span>
 
    'geo' URIs [<a href="https://tools.ietf.org/html/rfc5870" title="&quot;A Uniform Resource Identifier for Geographic Locations ('geo' URI)&quot;">RFC5870</a>] identify geographic locations and precise (not
-   uncertain) locations can be mapped to GeoJSON Geometry objects.<p>
+   uncertain) locations can be mapped to GeoJSON <span class="gj-type">Geometry</span> objects.<p>
 
    For this section, as in [<a href="https://tools.ietf.org/html/rfc5870" title="&quot;A Uniform Resource Identifier for Geographic Locations ('geo' URI)&quot;">RFC5870</a>], "lat", "lon", "alt", and "unc" are
    placeholders for 'geo' URI latitude, longitude, altitude, and
    uncertainty values, respectively.<p>
 
    A 'geo' URI with two coordinates and an uncertainty ('u') parameter
-   that is absent or zero, and a GeoJSON Point geometry may be mapped to
-   each other.  A GeoJSON Point is always converted to a 'geo' URI that
+   that is absent or zero, and a GeoJSON <span class="gj-type">Point</span> geometry may be mapped to
+   each other.  A GeoJSON <span class="gj-type">Point</span> is always converted to a 'geo' URI that
    has no uncertainty parameter.<p>
 
    'geo' URI:
@@ -1258,14 +1264,14 @@ ISSN: 2070-1721                                                  Cadcorp
 </li>
 </ul>
 
-<span class="h2"><h2><a class="selflink" name="appendix-A" href="#appendix-A">Appendix A</a>.  Geometry Examples</h2></span>
+<span class="h2"><h2><a class="selflink" name="appendix-A" href="#appendix-A">Appendix A</a>.  <span class="gj-type">Geometry</span> Examples</h2></span>
 
    Each of the examples below represents a valid and complete GeoJSON
    object.
 
 <span class="h3"><h3><a class="selflink" name="appendix-A.1" href="#appendix-A.1">A.1</a>.  Points</h3></span>
 
-   Point coordinates are in x, y order (easting, northing for projected
+   <span class="gj-type">Point</span> coordinates are in x, y order (easting, northing for projected
    coordinates, longitude, and latitude for geographic coordinates):
 
    <samp>
@@ -1277,7 +1283,7 @@ ISSN: 2070-1721                                                  Cadcorp
 
 <span class="h3"><h3><a class="selflink" name="appendix-A.2" href="#appendix-A.2">A.2</a>.  LineStrings</h3></span>
 
-   Coordinates of LineString are an array of positions (see
+   Coordinates of <span class="gj-type">LineString</span> are an array of positions (see
    <a href="#section-3.1.1">Section 3.1.1</a>):
    <samp>
      {
@@ -1291,7 +1297,7 @@ ISSN: 2070-1721                                                  Cadcorp
 
 <span class="h3"><h3><a class="selflink" name="appendix-A.3" href="#appendix-A.3">A.3</a>.  Polygons</h3></span>
 
-   Coordinates of a Polygon are an array of linear ring (see
+   Coordinates of a <span class="gj-type">Polygon</span> are an array of linear ring (see
    <a href="#section-3.1.6">Section 3.1.6</a>) coordinate arrays.  The first element in the array
    represents the exterior ring.  Any subsequent elements represent
    interior rings (or holes).
@@ -1338,7 +1344,7 @@ ISSN: 2070-1721                                                  Cadcorp
 </samp>
 <span class="h3"><h3><a class="selflink" name="appendix-A.4" href="#appendix-A.4">A.4</a>.  MultiPoints</h3></span>
 
-   Coordinates of a MultiPoint are an array of positions:
+   Coordinates of a <span class="gj-type">MultiPoint</span> are an array of positions:
    <samp>
      {
          "type": "MultiPoint",
@@ -1350,7 +1356,7 @@ ISSN: 2070-1721                                                  Cadcorp
 </samp>
 <span class="h3"><h3><a class="selflink" name="appendix-A.5" href="#appendix-A.5">A.5</a>.  MultiLineStrings</h3></span>
 
-   Coordinates of a MultiLineString are an array of LineString
+   Coordinates of a <span class="gj-type">MultiLineString</span> are an array of <span class="gj-type">LineString</span>
    coordinate arrays:
 
    <samp>
@@ -1370,7 +1376,7 @@ ISSN: 2070-1721                                                  Cadcorp
 </samp>
 <span class="h3"><h3><a class="selflink" name="appendix-A.6" href="#appendix-A.6">A.6</a>.  MultiPolygons</h3></span>
 
-   Coordinates of a MultiPolygon are an array of Polygon coordinate
+   Coordinates of a <span class="gj-type">MultiPolygon</span> are an array of <span class="gj-type">Polygon</span> coordinate
    arrays:
 
    <samp>
@@ -1409,8 +1415,8 @@ ISSN: 2070-1721                                                  Cadcorp
 
 <span class="h3"><h3><a class="selflink" name="appendix-A.7" href="#appendix-A.7">A.7</a>.  GeometryCollections</h3></span>
 
-   Each element in the "geometries" array of a GeometryCollection is one
-   of the Geometry objects described above:
+   Each element in the "geometries" array of a <span class="gj-type">GeometryCollection</span> is one
+   of the <span class="gj-type">Geometry</span> objects described above:
 
    <samp>
      {
@@ -1453,7 +1459,7 @@ ISSN: 2070-1721                                                  Cadcorp
       <a href="#section-3.1.1">Section 3.1.1</a>).
 
   </li>
-  <li>Polygon rings MUST follow the right-hand rule for orientation
+  <li><span class="gj-type">Polygon</span> rings MUST follow the right-hand rule for orientation
       (counterclockwise external rings, clockwise internal rings).
 
   </li>
@@ -1461,7 +1467,7 @@ ISSN: 2070-1721                                                  Cadcorp
       "[minx, miny, maxx, maxy]" (see <a href="#section-5">Section 5</a>).
 
   </li>
-  <li>A Feature object's "id" member is a string or number (see
+  <li>A <span class="gj-type">Feature</span> object's "id" member is a string or number (see
       <a href="#section-3.2">Section 3.2</a>).
 
   </li>
@@ -1502,12 +1508,12 @@ ISSN: 2070-1721                                                  Cadcorp
 <span class="h2"><h2><a class="selflink" name="appendix-C" href="#appendix-C">Appendix C</a>.  GeoJSON Text Sequences</h2></span>
 
    All GeoJSON objects defined in this specification --
-   FeatureCollection, Feature, and Geometry -- consist of exactly one
+   <span class="gj-type">FeatureCollection</span>, <span class="gj-type">Feature</span>, and <span class="gj-type">Geometry</span> -- consist of exactly one
    JSON object.  However, there may be circumstances in which
    applications need to represent sets or sequences of these objects
-   (over and above the grouping of Feature objects in a
-   FeatureCollection), e.g., in order to efficiently "stream" large
-   numbers of Feature objects.  The definition of such sets or sequences
+   (over and above the grouping of <span class="gj-type">Feature</span> objects in a
+   <span class="gj-type">FeatureCollection</span>), e.g., in order to efficiently "stream" large
+   numbers of <span class="gj-type">Feature</span> objects.  The definition of such sets or sequences
    is outside the scope of this specification.<p>
 
    If such a representation is needed, a new media type is required that
