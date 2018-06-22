@@ -63,7 +63,7 @@ System 1984, and units of decimal degrees.">
         h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	    font-weight: bold;
             /*line-height: 0pt;*/
-            display: inline;
+            /*display: inline;*/
             /*white-space: pre;*/
             /*font-family: monospace;*/
             font-family:sans;
@@ -76,8 +76,10 @@ System 1984, and units of decimal degrees.">
             margin-bottom: 0px;
         }
 	.pre {
-	    white-space: pre;
-	    font-family: monospace;
+	    /*white-space: pre;*/
+	    /*font-family: monospace;*/
+        font-family:sans;
+        white-space: normal;
 	}
 	.header{
 	    font-weight: bold;
@@ -140,6 +142,18 @@ System 1984, and units of decimal degrees.">
         margin-left:1em;
     }
 
+    samp {
+        white-space: pre;
+        font-family: monospace;
+        color:darkblue;
+        margin-bottom:1em;
+        display:block;
+    }
+
+    .main-body {
+        font-family:sans-serif;
+    }
+
     </style>
     <!--[if IE]>
     <style>
@@ -195,7 +209,8 @@ This is an unofficial, reformatted version of the official <a href="https://tool
 <span class="pre noprint docinfo">                                                                        </span><br>
 <span class="pre noprint docinfo">                                                       PROPOSED STANDARD</span><br>
 <span class="pre noprint docinfo">                                                            <span style="color: #C00;">Errata Exist</span></span><br>
-<pre>Internet Engineering Task Force (IETF)                         H. Butler
+<div class="main-body">
+    Internet Engineering Task Force (IETF)                         H. Butler
 Request for Comments: 7946                                     Hobu Inc.
 Category: Standards Track                                        M. Daly
 ISSN: 2070-1721                                                  Cadcorp
@@ -212,7 +227,7 @@ ISSN: 2070-1721                                                  Cadcorp
 
                            <span class="h1"><h1>The GeoJSON Format</h1></span>
 
-Abstract
+<h2>Abstract</h2>
 
    GeoJSON is a geospatial data interchange format based on JavaScript
    Object Notation (JSON).  It defines several types of JSON objects and
@@ -221,24 +236,26 @@ Abstract
    GeoJSON uses a geographic coordinate reference system, World Geodetic
    System 1984, and units of decimal degrees.
 
-Status of This Memo
+   <h2>Status of This Memo</h2>
 
    This is an Internet Standards Track document.
+   <p>
 
    This document is a product of the Internet Engineering Task Force
    (IETF).  It represents the consensus of the IETF community.  It has
    received public review and has been approved for publication by the
    Internet Engineering Steering Group (IESG).  Further information on
    Internet Standards is available in <a href="https://tools.ietf.org/html/rfc7841#section-2">Section&nbsp;2 of RFC 7841</a>.
-
+<p>
    Information about the current status of this document, any errata,
    and how to provide feedback on it may be obtained at
    <a href="http://www.rfc-editor.org/info/rfc7946">http://www.rfc-editor.org/info/rfc7946</a>.
 
-Copyright Notice
+   <h2>Copyright Notice</h2>
 
    Copyright (c) 2016 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
+   <p>
 
    This document is subject to <a href="https://tools.ietf.org/html/bcp78">BCP 78</a> and the IETF Trust's Legal
    Provisions Relating to IETF Documents
@@ -250,8 +267,8 @@ Copyright Notice
    the Trust Legal Provisions and are provided without warranty as
    described in the Simplified BSD License.
 
-Table of Contents
-
+   <h2>Table of Contents</h2>
+<pre>
    <a href="#section-1">1</a>.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   <a href="#page-3">3</a>
      <a href="#section-1.1">1.1</a>.  Requirements Language . . . . . . . . . . . . . . . . . .   <a href="#page-4">4</a>
      <a href="#section-1.2">1.2</a>.  Conventions Used in This Document . . . . . . . . . . . .   <a href="#page-4">4</a>
@@ -307,7 +324,7 @@ Table of Contents
    <a href="#appendix-C">Appendix C</a>.  GeoJSON Text Sequences . . . . . . . . . . . . . . .  <a href="#page-27">27</a>
    Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . .  <a href="#page-27">27</a>
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  <a href="#page-28">28</a>
-
+</pre>
 <span class="h2"><h2><a class="selflink" name="section-1" href="#section-1">1</a>.  Introduction</h2></span>
 
    GeoJSON is a format for encoding a variety of geographic data
@@ -318,15 +335,13 @@ Table of Contents
    Point, LineString, Polygon, MultiPoint, MultiLineString,
    MultiPolygon, and GeometryCollection.  Features in GeoJSON contain a
    Geometry object and additional properties, and a FeatureCollection
-   contains a list of Features.
-
+   contains a list of Features.<p>
    The format is concerned with geographic data in the broadest sense;
    anything with qualities that are bounded in geographical space might
    be a Feature whether or not it is a physical structure.  The concepts
    in GeoJSON are not new; they are derived from preexisting open
    geographic information system standards and have been streamlined to
-   better suit web application development using JSON.
-
+   better suit web application development using JSON.<p>
    GeoJSON comprises the seven concrete geometry types defined in the
    OpenGIS Simple Features Implementation Specification for SQL [<a href="#ref-SFSQL" title="&quot;OpenGIS Simple Features Specification For SQL Revision 1.1&quot;">SFSQL</a>]:
    0-dimensional Point and MultiPoint; 1-dimensional curve LineString
@@ -334,8 +349,7 @@ Table of Contents
    and the heterogeneous GeometryCollection.  GeoJSON representations of
    instances of these geometry types are analogous to the well-known
    binary (WKB) and well-known text (WKT) representations described in
-   that same specification.
-
+   that same specification.<p>
    GeoJSON also comprises the types Feature and FeatureCollection.
    Feature objects in GeoJSON contain a Geometry object with one of the
    above geometry types and additional members.  A FeatureCollection
@@ -345,8 +359,7 @@ Table of Contents
    Language (KML) Folder of Placemarks [<a href="#ref-KMLv2.2" title="&quot;OGC KML&quot;">KMLv2.2</a>].  Some implementations
    of the WFS specification also provide GeoJSON-formatted responses to
    GetFeature requests, but there is no particular service model or
-   Feature type ontology implied in the GeoJSON format specification.
-
+   Feature type ontology implied in the GeoJSON format specification.<p>
    Since its initial publication in 2008 [<a href="#ref-GJ2008" title="&quot;The GeoJSON Format Specification&quot;">GJ2008</a>], the GeoJSON format
    specification has steadily grown in popularity.  It is widely used in
    JavaScript web-mapping libraries, JSON-based document databases, and
@@ -362,14 +375,12 @@ Table of Contents
 <span class="h3"><h3><a class="selflink" name="section-1.2" href="#section-1.2">1.2</a>.  Conventions Used in This Document</h3></span>
 
    The ordering of the members of any JSON object defined in this
-   document MUST be considered irrelevant, as specified by [<a href="https://tools.ietf.org/html/rfc7159" title="&quot;The JavaScript Object Notation (JSON) Data Interchange Format&quot;">RFC7159</a>].
-
+   document MUST be considered irrelevant, as specified by [<a href="https://tools.ietf.org/html/rfc7159" title="&quot;The JavaScript Object Notation (JSON) Data Interchange Format&quot;">RFC7159</a>].<p>
    Some examples use the combination of a JavaScript single-line comment
    (//) followed by an ellipsis (...) as placeholder notation for
    content deemed irrelevant by the authors.  These placeholders must of
    course be deleted or otherwise replaced, before attempting to
-   validate the corresponding JSON code example.
-
+   validate the corresponding JSON code example.<p>
    Whitespace is used in the examples inside this document to help
    illustrate the data structures, but it is not required.  Unquoted
    whitespace is not significant in JSON.
@@ -411,6 +422,7 @@ Table of Contents
 
    A GeoJSON FeatureCollection:
 
+   <samp>
    {
        "type": "FeatureCollection",
        "features": [{
@@ -459,6 +471,8 @@ Table of Contents
            }
        }]
    }
+
+</samp>
 
 <span class="h2"><h2><a class="selflink" name="section-2" href="#section-2">2</a>.  GeoJSON Text</h2></span>
 
@@ -533,7 +547,7 @@ Table of Contents
    elements.  The first two elements are longitude and latitude, or
    easting and northing, precisely in that order and using decimal
    numbers.  Altitude or elevation MAY be included as an optional third
-   element.
+   element.<p>
 
    Implementations SHOULD NOT extend positions beyond three elements
    because the semantics of extra elements are unspecified and
@@ -542,11 +556,11 @@ Table of Contents
    "M") or a numerical timestamp, but in most situations a parser will
    not be able to properly interpret these values.  The interpretation
    and meaning of additional elements is beyond the scope of this
-   specification, and additional elements MAY be ignored by parsers.
+   specification, and additional elements MAY be ignored by parsers.<p>
 
    A line between two positions is a straight Cartesian line, the
    shortest line between those two points in the coordinate reference
-   system (see <a href="#section-4">Section 4</a>).
+   system (see <a href="#section-4">Section 4</a>).<p>
 
    In other words, every point on a line that does not cross the
    antimeridian between a point (lon0, lat0) and (lon1, lat1) can be
@@ -556,18 +570,18 @@ Table of Contents
 
    with t being a real number greater than or equal to 0 and smaller
    than or equal to 1.  Note that this line may markedly differ from the
-   geodesic path along the curved surface of the reference ellipsoid.
+   geodesic path along the curved surface of the reference ellipsoid.<p>
 
    The same applies to the optional height element with the proviso that
    the direction of the height is as specified in the coordinate
-   reference system.
+   reference system.<p>
 
    Note that, again, this does not mean that a surface with equal height
    follows, for example, the curvature of a body of water.  Nor is a
-   surface of equal height perpendicular to a plumb line.
+   surface of equal height perpendicular to a plumb line.<p>
 
    Examples of positions and geometries are provided in <a href="#appendix-A">Appendix A</a>,
-   "Geometry Examples".
+   "Geometry Examples".<p>
 
 <span class="h4"><h4><a class="selflink" name="section-3.1.2" href="#section-3.1.2">3.1.2</a>.  Point</h4></span>
 
@@ -642,12 +656,12 @@ Table of Contents
    A GeometryCollection has a member with the name "geometries".  The
    value of "geometries" is an array.  Each element of this array is a
    GeoJSON Geometry object.  It is possible for this array to be empty.
-
+<p>
    Unlike the other geometry types described above, a GeometryCollection
    can be a heterogeneous composition of smaller Geometry objects.  For
    example, a Geometry object in the shape of a lowercase roman "i" can
    be composed of one point and one LineString.
-
+<p>
    GeometryCollections have a different syntax from single type Geometry
    objects (Point, LineString, and Polygon) and homogeneously typed
    multipart Geometry objects (MultiPoint, MultiLineString, and
@@ -657,13 +671,13 @@ Table of Contents
    collection.  The "geometries" member of a GeometryCollection
    describes the parts of this composition.  Implementations SHOULD NOT
    apply any additional semantics to the "geometries" array.
-
+<p>
    To maximize interoperability, implementations SHOULD avoid nested
    GeometryCollections.  Furthermore, GeometryCollections composed of a
    single part or a number of parts of a single type SHOULD be avoided
    when that single part or a single object of multipart type
    (MultiPoint, MultiLineString, or MultiPolygon) could be used instead.
-
+<p>
 <span class="h4"><h4><a class="selflink" name="section-3.1.9" href="#section-3.1.9">3.1.9</a>.  Antimeridian Cutting</h4></span>
 
    In representing Features that cross the antimeridian,
@@ -676,6 +690,7 @@ Table of Contents
    the antimeridian to 45 degrees N, 170 degrees W should be cut in two
    and represented as a MultiLineString.
 
+   <samp>
    {
        "type": "MultiLineString",
        "coordinates": [
@@ -686,12 +701,13 @@ Table of Contents
            ]
        ]
    }
-
+    </samp>
 
    A rectangle extending from 40 degrees N, 170 degrees E across the
    antimeridian to 50 degrees N, 170 degrees W should be cut in two and
    represented as a MultiPolygon.
 
+   <samp>
    {
        "type": "MultiPolygon",
        "coordinates": [
@@ -709,6 +725,7 @@ Table of Contents
            ]
        ]
    }
+</samp>
 
 <span class="h4"><h4><a class="selflink" name="section-3.1.10" href="#section-3.1.10">3.1.10</a>.  Uncertainty and Precision</h4></span>
 
@@ -763,7 +780,7 @@ Table of Contents
    be the height in meters above or below the WGS 84 reference
    ellipsoid.  In the absence of elevation values, applications
    sensitive to height or depth SHOULD interpret positions as being at
-   local ground or sea level.
+   local ground or sea level.<p>
 
    Note: the use of alternative coordinate reference systems was
    specified in [<a href="#ref-GJ2008" title="&quot;The GeoJSON Format Specification&quot;">GJ2008</a>], but it has been removed from this version of
@@ -775,7 +792,7 @@ Table of Contents
    reference system transformation parameters.  However, where all
    involved parties have a prior arrangement, alternative coordinate
    reference systems can be used without risk of data being
-   misinterpreted.
+   misinterpreted.<p>
 
 <span class="h2"><h2><a class="selflink" name="section-5" href="#section-5">5</a>.  Bounding Box</h2></span>
 
@@ -785,12 +802,14 @@ Table of Contents
    length 2*n where n is the number of dimensions represented in the
    contained geometries, with all axes of the most southwesterly point
    followed by all axes of the more northeasterly point.  The axes order
-   of a bbox follows the axes order of geometries.
+   of a bbox follows the axes order of geometries.<p>
 
    The "bbox" values define shapes with edges that follow lines of
-   constant longitude, latitude, and elevation.
+   constant longitude, latitude, and elevation.<p>
 
    Example of a 2D bbox member on a Feature:
+
+   <samp>
 
    {
        "type": "Feature",
@@ -809,8 +828,11 @@ Table of Contents
        //...
    }
 
+</samp>
+
    Example of a 2D bbox member on a FeatureCollection:
 
+   <samp>
    {
        "type": "FeatureCollection",
        "bbox": [100.0, 0.0, 105.0, 1.0],
@@ -819,7 +841,11 @@ Table of Contents
        ]
    }
 
+</samp>
+
    Example of a 3D bbox member with a depth of 100 meters:
+
+<samp>
 
    {
        "type": "FeatureCollection",
@@ -828,7 +854,7 @@ Table of Contents
        //...
        ]
    }
-
+</samp>
 
 <span class="h3"><h3><a class="selflink" name="section-5.1" href="#section-5.1">5.1</a>.  The Connecting Lines</h3></span>
 
@@ -837,8 +863,9 @@ Table of Contents
    "west", "south", "east", and "north", every point on the northernmost
    line can be expressed as
 
+   <samp>
    (lon, lat) = (west + (east - west) * t, north)
-
+</samp>
    with 0 &lt;= t &lt;= 1.
 
 <span class="h3"><h3><a class="selflink" name="section-5.2" href="#section-5.2">5.2</a>.  The Antimeridian</h3></span>
@@ -849,17 +876,22 @@ Table of Contents
    degrees S and 177 degrees E, and the northwest corner is at 16
    degrees S and 178 degrees W.  The antimeridian-spanning GeoJSON
    bounding box for this FeatureCollection is
+   <p>
 
-   "bbox": [177.0, -20.0, -178.0, -16.0]
+   <samp>"bbox": [177.0, -20.0, -178.0, -16.0]</samp>
+   <p>
 
    and covers 5 degrees of longitude.
+   <p>
 
    The complementary bounding box for the same latitude band, not
    crossing the antimeridian, is
+   <p>
 
-   "bbox": [-178.0, -20.0, 177.0, -16.0]
+   <samp>"bbox": [-178.0, -20.0, 177.0, -16.0]</samp>
 
    and covers 355 degrees of longitude.
+   <p>
 
    The latitude of the northeast corner is always greater than the
    latitude of the southwest corner, but bounding boxes that cross the
@@ -874,27 +906,29 @@ Table of Contents
    approximates a spherical cap bounded by the "minlat" circle of
    latitude.
 
+   <samp>
    "bbox": [-180.0, minlat, 180.0, 90.0]
-
+</samp>
    A bounding box that contains the South Pole extends from a southwest
    corner of 90 degrees S, 180 degrees W to a northeast corner of
    "maxlat" degrees S, 180 degrees E.
-
+   <samp>
    "bbox": [-180.0, -90.0, 180.0, maxlat]
-
+</samp>
    A bounding box that just touches the North Pole and forms a slice of
    an approximate spherical cap when viewed on a globe extends from a
    southwest corner of "minlat" degrees N and "westlon" degrees E to a
    northeast corner of 90 degrees N and "eastlon" degrees E.
-
+   <samp>
    "bbox": [westlon, minlat, eastlon, 90.0]
-
+</samp>
    Similarly, a bounding box that just touches the South Pole and forms
    a slice of an approximate spherical cap when viewed on a globe has
    the following representation in GeoJSON.
 
+<samp>
    "bbox": [westlon, -90.0, eastlon, maxlat]
-
+</samp>
    Implementers MUST NOT use latitude values greater than 90 or less
    than -90 to imply an extent that is not a spherical cap.
 
@@ -908,9 +942,9 @@ Table of Contents
    for foreign members is defined.  Accordingly, implementations that
    rely too heavily on the use of foreign members might experience
    reduced interoperability with other implementations.
-
+<p>
    For example, in the (abridged) Feature object shown below
-
+   <samp>
    {
        "type": "Feature",
        "id": "f1",
@@ -918,15 +952,18 @@ Table of Contents
        "properties": {...},
        "title": "Example Feature"
    }
-
+</samp>
    the name/value pair of "title": "Example Feature" is a foreign
    member.  When the value of a foreign member is an object, all the
    descendant members of that object are themselves foreign members.
+   <p>
 
    GeoJSON semantics do not apply to foreign members and their
    descendants, regardless of their names and values.  For example, in
    the (abridged) Feature object below
+   <p>
 
+   <samp>
    {
        "type": "Feature",
        "id": "f2",
@@ -940,7 +977,7 @@ Table of Contents
            ]
        }
    }
-
+</samp>
    the "centerline" member is not a GeoJSON Geometry object.
 
 <span class="h2"><h2><a class="selflink" name="section-7" href="#section-7">7</a>.  GeoJSON Types Are Not Extensible</h2></span>
@@ -952,19 +989,19 @@ Table of Contents
 <span class="h3"><h3><a class="selflink" name="section-7.1" href="#section-7.1">7.1</a>.  Semantics of GeoJSON Members and Types Are Not Changeable</h3></span>
 
    Implementations MUST NOT change the semantics of GeoJSON members and
-   types.
+   types.<p>
 
    The GeoJSON "coordinates" and "geometries" members define Geometry
    objects.  FeatureCollection and Feature objects, respectively, MUST
-   NOT contain a "coordinates" or "geometries" member.
+   NOT contain a "coordinates" or "geometries" member.<p>
 
    The GeoJSON "geometry" and "properties" members define a Feature
    object.  FeatureCollection and Geometry objects, respectively, MUST
-   NOT contain a "geometry" or "properties" member.
+   NOT contain a "geometry" or "properties" member.<p>
 
    The GeoJSON "features" member defines a FeatureCollection object.
    Feature and Geometry objects, respectively, MUST NOT contain a
-   "features" member.
+   "features" member.<p>
 
 <span class="h2"><h2><a class="selflink" name="section-8" href="#section-8">8</a>.  Versioning</h2></span>
 
@@ -972,21 +1009,21 @@ Table of Contents
    versioning scheme is defined.  A specification that alters the
    semantics of GeoJSON members or otherwise modifies the format does
    not create a new version of this format; instead, it defines an
-   entirely new format that MUST NOT be identified as GeoJSON.
+   entirely new format that MUST NOT be identified as GeoJSON.<p>
 
 <span class="h2"><h2><a class="selflink" name="section-9" href="#section-9">9</a>.  Mapping 'geo' URIs</h2></span>
 
    'geo' URIs [<a href="https://tools.ietf.org/html/rfc5870" title="&quot;A Uniform Resource Identifier for Geographic Locations ('geo' URI)&quot;">RFC5870</a>] identify geographic locations and precise (not
-   uncertain) locations can be mapped to GeoJSON Geometry objects.
+   uncertain) locations can be mapped to GeoJSON Geometry objects.<p>
 
    For this section, as in [<a href="https://tools.ietf.org/html/rfc5870" title="&quot;A Uniform Resource Identifier for Geographic Locations ('geo' URI)&quot;">RFC5870</a>], "lat", "lon", "alt", and "unc" are
    placeholders for 'geo' URI latitude, longitude, altitude, and
-   uncertainty values, respectively.
+   uncertainty values, respectively.<p>
 
    A 'geo' URI with two coordinates and an uncertainty ('u') parameter
    that is absent or zero, and a GeoJSON Point geometry may be mapped to
    each other.  A GeoJSON Point is always converted to a 'geo' URI that
-   has no uncertainty parameter.
+   has no uncertainty parameter.<p>
 
    'geo' URI:
 
@@ -994,18 +1031,21 @@ Table of Contents
 
    GeoJSON:
 
+   <samp>
    {"type": "Point", "coordinates": [lon, lat]}
+</samp>
 
    The mapping between 'geo' URIs and GeoJSON Points that specify
-   elevation is shown below.
+   elevation is shown below.<p>
 
    'geo' URI:
 
    geo:lat,lon,alt
 
    GeoJSON:
-
+   <samp>
    {"type": "Point", "coordinates": [lon, lat, alt]}
+</samp>
 
    GeoJSON has no concept of uncertainty; imprecise or uncertain 'geo'
    URIs thus cannot be mapped to GeoJSON geometries.
@@ -1014,13 +1054,13 @@ Table of Contents
 
    GeoJSON shares security issues common to all JSON content types.  See
    <a href="https://tools.ietf.org/html/rfc7159#section-12">[RFC7159], Section&nbsp;12</a> for additional information.  GeoJSON does not
-   provide executable content.
+   provide executable content.<p>
 
    GeoJSON does not provide privacy or integrity services.  If sensitive
    data requires privacy or integrity protection, those must be provided
    by the transport -- for example, Transport Layer Security (TLS) or
    HTTPS.  There will be cases in which stored data need protection,
-   which is out of scope for this document.
+   which is out of scope for this document.<p>
 
    As with other geographic data formats, e.g., [<a href="#ref-KMLv2.2" title="&quot;OGC KML&quot;">KMLv2.2</a>], providing
    details about the locations of sensitive persons, animals, habitats,
@@ -1049,12 +1089,12 @@ Table of Contents
    coordinates with units of degrees, 6 decimal places (a default common
    in, e.g., sprintf) amounts to about 10 centimeters, a precision well
    within that of current GPS systems.  Implementations should consider
-   the cost of using a greater precision than necessary.
+   the cost of using a greater precision than necessary.<p>
 
    Furthermore, the WGS 84 [<a href="#ref-WGS84" title="&quot;Department of Defense World Geodetic System 1984: Its Definition and Relationships with Local Geodetic Systems&quot;">WGS84</a>] datum is a relatively coarse
    approximation of the geoid, with the height varying by up to 5 m (but
    generally between 2 and 3 meters) higher or lower relative to a
-   surface parallel to Earth's mean sea level.
+   surface parallel to Earth's mean sea level.<p>
 
 <span class="h2"><h2><a class="selflink" name="section-12" href="#section-12">12</a>.  IANA Considerations</h2></span>
 
@@ -1062,8 +1102,9 @@ Table of Contents
    registered in the "Media Types" registry described in [<a href="https://tools.ietf.org/html/rfc6838" title="&quot;Media Type Specifications and Registration Procedures&quot;">RFC6838</a>].  The
    entry for "application/vnd.geo+json" in the same registry should have
    its status changed to be "OBSOLETED" with a pointer to the media type
-   "application/geo+json" and a reference added to this RFC.
+   "application/geo+json" and a reference added to this RFC.<p>
 
+    <pre>
    Type name:  application
 
    Subtype name:  geo+json
@@ -1115,69 +1156,72 @@ Table of Contents
    Author:  see "Authors' Addresses" section of [[<a href="https://tools.ietf.org/html/rfc7946">RFC7946</a>]].
 
    Change controller:  Internet Engineering Task Force
+</pre>
 
 <span class="h2"><h2><a class="selflink" name="section-13" href="#section-13">13</a>.  References</h2></span>
 
 <span class="h3"><h3><a class="selflink" name="section-13.1" href="#section-13.1">13.1</a>.  Normative References</h3></span>
-
-   [<a name="ref-RFC2119" id="ref-RFC2119">RFC2119</a>]  Bradner, S., "Key words for use in RFCs to Indicate
+<ul>
+<li>   [<a name="ref-RFC2119" id="ref-RFC2119">RFC2119</a>]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", <a href="https://tools.ietf.org/html/bcp14">BCP 14</a>, <a href="https://tools.ietf.org/html/rfc2119">RFC 2119</a>,
               DOI 10.17487/RFC2119, March 1997,
               &lt;<a href="http://www.rfc-editor.org/info/rfc2119">http://www.rfc-editor.org/info/rfc2119</a>&gt;.
-
-   [<a name="ref-RFC6838" id="ref-RFC6838">RFC6838</a>]  Freed, N., Klensin, J., and T. Hansen, "Media Type
+</li>
+<li>   [<a name="ref-RFC6838" id="ref-RFC6838">RFC6838</a>]  Freed, N., Klensin, J., and T. Hansen, "Media Type
               Specifications and Registration Procedures", <a href="https://tools.ietf.org/html/bcp13">BCP 13</a>,
               <a href="https://tools.ietf.org/html/rfc6838">RFC 6838</a>, DOI 10.17487/RFC6838, January 2013,
               &lt;<a href="http://www.rfc-editor.org/info/rfc6838">http://www.rfc-editor.org/info/rfc6838</a>&gt;.
-
-   [<a name="ref-RFC7159" id="ref-RFC7159">RFC7159</a>]  Bray, T., Ed., "The JavaScript Object Notation (JSON) Data
+</li>
+<li>   [<a name="ref-RFC7159" id="ref-RFC7159">RFC7159</a>]  Bray, T., Ed., "The JavaScript Object Notation (JSON) Data
               Interchange Format", <a href="https://tools.ietf.org/html/rfc7159">RFC 7159</a>, DOI 10.17487/RFC7159, March
               2014, &lt;<a href="http://www.rfc-editor.org/info/rfc7159">http://www.rfc-editor.org/info/rfc7159</a>&gt;.
-
-   [<a name="ref-RFC7493" id="ref-RFC7493">RFC7493</a>]  Bray, T., Ed., "The I-JSON Message Format", <a href="https://tools.ietf.org/html/rfc7493">RFC 7493</a>,
+</li>
+<li>   [<a name="ref-RFC7493" id="ref-RFC7493">RFC7493</a>]  Bray, T., Ed., "The I-JSON Message Format", <a href="https://tools.ietf.org/html/rfc7493">RFC 7493</a>,
               DOI 10.17487/RFC7493, March 2015,
               &lt;<a href="http://www.rfc-editor.org/info/rfc7493">http://www.rfc-editor.org/info/rfc7493</a>&gt;.
-
-   [<a name="ref-WGS84" id="ref-WGS84">WGS84</a>]    National Imagery and Mapping Agency, "Department of
+</li>
+<li>   [<a name="ref-WGS84" id="ref-WGS84">WGS84</a>]    National Imagery and Mapping Agency, "Department of
               Defense World Geodetic System 1984: Its Definition and
               Relationships with Local Geodetic Systems", Third Edition,
               1984.
-
+</li>
+</ul>
 <span class="h3"><h3><a class="selflink" name="section-13.2" href="#section-13.2">13.2</a>.  Informative References</h3></span>
-
-   [<a name="ref-GJ2008" id="ref-GJ2008">GJ2008</a>]   Butler, H., Daly, M., Doyle, A., Gillies, S., Schaub, T.,
+<ul>
+   <li>[<a name="ref-GJ2008" id="ref-GJ2008">GJ2008</a>]   Butler, H., Daly, M., Doyle, A., Gillies, S., Schaub, T.,
               and C. Schmidt, "The GeoJSON Format Specification", June
               2008.
-
-   [<a name="ref-KMLv2.2" id="ref-KMLv2.2">KMLv2.2</a>]  Wilson, T., "OGC KML", OGC 07-147r2, Version 2.2.0, April
+   </li>
+   <li>[<a name="ref-KMLv2.2" id="ref-KMLv2.2">KMLv2.2</a>]  Wilson, T., "OGC KML", OGC 07-147r2, Version 2.2.0, April
               2008.
-
-   [<a name="ref-RFC5870" id="ref-RFC5870">RFC5870</a>]  Mayrhofer, A. and C. Spanring, "A Uniform Resource
+   </li>
+   <li>[<a name="ref-RFC5870" id="ref-RFC5870">RFC5870</a>]  Mayrhofer, A. and C. Spanring, "A Uniform Resource
               Identifier for Geographic Locations ('geo' URI)",
               <a href="https://tools.ietf.org/html/rfc5870">RFC 5870</a>, DOI 10.17487/RFC5870, June 2010,
               &lt;<a href="http://www.rfc-editor.org/info/rfc5870">http://www.rfc-editor.org/info/rfc5870</a>&gt;.
-
-   [<a name="ref-RFC6772" id="ref-RFC6772">RFC6772</a>]  Schulzrinne, H., Ed., Tschofenig, H., Ed., Cuellar, J.,
+   </li>
+   <li>[<a name="ref-RFC6772" id="ref-RFC6772">RFC6772</a>]  Schulzrinne, H., Ed., Tschofenig, H., Ed., Cuellar, J.,
               Polk, J., Morris, J., and M. Thomson, "Geolocation Policy:
               A Document Format for Expressing Privacy Preferences for
               Location Information", <a href="https://tools.ietf.org/html/rfc6772">RFC 6772</a>, DOI 10.17487/RFC6772,
               January 2013, &lt;<a href="http://www.rfc-editor.org/info/rfc6772">http://www.rfc-editor.org/info/rfc6772</a>&gt;.
-
-   [<a name="ref-RFC7464" id="ref-RFC7464">RFC7464</a>]  Williams, N., "JavaScript Object Notation (JSON) Text
+   </li>
+   <li>[<a name="ref-RFC7464" id="ref-RFC7464">RFC7464</a>]  Williams, N., "JavaScript Object Notation (JSON) Text
               Sequences", <a href="https://tools.ietf.org/html/rfc7464">RFC 7464</a>, DOI 10.17487/RFC7464, February 2015,
               &lt;<a href="http://www.rfc-editor.org/info/rfc7464">http://www.rfc-editor.org/info/rfc7464</a>&gt;.
-
-   [<a name="ref-SFSQL" id="ref-SFSQL">SFSQL</a>]    OpenGIS Consortium, Inc., "OpenGIS Simple Features
+   </li>
+   <li>[<a name="ref-SFSQL" id="ref-SFSQL">SFSQL</a>]    OpenGIS Consortium, Inc., "OpenGIS Simple Features
               Specification For SQL Revision 1.1", OGC 99-049, May 1999.
-
-   [<a name="ref-Sweeney" id="ref-Sweeney">Sweeney</a>]  Sweeney, L., "k-anonymity: a model for protecting
+   </li>
+   <li>[<a name="ref-Sweeney" id="ref-Sweeney">Sweeney</a>]  Sweeney, L., "k-anonymity: a model for protecting
               privacy", International Journal on Uncertainty, Fuzziness
               and Knowledge-based Systems 10 (5), 2002; 557-570,
               DOI 10.1142/S0218488502001648, 2002.
-
-   [<a name="ref-WFSv1" id="ref-WFSv1">WFSv1</a>]    Vretanos, P., "Web Feature Service Implementation
+   </li>
+   <li>[<a name="ref-WFSv1" id="ref-WFSv1">WFSv1</a>]    Vretanos, P., "Web Feature Service Implementation
               Specification", OGC 04-094, Version 1.1.0, May 2005.
-
+</li>
+</ul>
 
 <span class="h2"><h2><a class="selflink" name="appendix-A" href="#appendix-A">Appendix A</a>.  Geometry Examples</h2></span>
 
@@ -1189,16 +1233,18 @@ Table of Contents
    Point coordinates are in x, y order (easting, northing for projected
    coordinates, longitude, and latitude for geographic coordinates):
 
+   <samp>
      {
          "type": "Point",
          "coordinates": [100.0, 0.0]
      }
+</samp>
 
 <span class="h3"><h3><a class="selflink" name="appendix-A.2" href="#appendix-A.2">A.2</a>.  LineStrings</h3></span>
 
    Coordinates of LineString are an array of positions (see
    <a href="#section-3.1.1">Section 3.1.1</a>):
-
+   <samp>
      {
          "type": "LineString",
          "coordinates": [
@@ -1206,6 +1252,7 @@ Table of Contents
              [101.0, 1.0]
          ]
      }
+</samp>
 
 <span class="h3"><h3><a class="selflink" name="appendix-A.3" href="#appendix-A.3">A.3</a>.  Polygons</h3></span>
 
@@ -1216,6 +1263,7 @@ Table of Contents
 
    No holes:
 
+   <samp>
      {
          "type": "Polygon",
          "coordinates": [
@@ -1228,9 +1276,11 @@ Table of Contents
              ]
          ]
      }
+</samp>
 
    With holes:
 
+   <samp>
      {
          "type": "Polygon",
          "coordinates": [
@@ -1250,11 +1300,11 @@ Table of Contents
              ]
          ]
      }
-
+</samp>
 <span class="h3"><h3><a class="selflink" name="appendix-A.4" href="#appendix-A.4">A.4</a>.  MultiPoints</h3></span>
 
    Coordinates of a MultiPoint are an array of positions:
-
+   <samp>
      {
          "type": "MultiPoint",
          "coordinates": [
@@ -1262,12 +1312,13 @@ Table of Contents
              [101.0, 1.0]
          ]
      }
-
+</samp>
 <span class="h3"><h3><a class="selflink" name="appendix-A.5" href="#appendix-A.5">A.5</a>.  MultiLineStrings</h3></span>
 
    Coordinates of a MultiLineString are an array of LineString
    coordinate arrays:
 
+   <samp>
      {
          "type": "MultiLineString",
          "coordinates": [
@@ -1281,12 +1332,13 @@ Table of Contents
              ]
          ]
      }
-
+</samp>
 <span class="h3"><h3><a class="selflink" name="appendix-A.6" href="#appendix-A.6">A.6</a>.  MultiPolygons</h3></span>
 
    Coordinates of a MultiPolygon are an array of Polygon coordinate
    arrays:
 
+   <samp>
      {
          "type": "MultiPolygon",
          "coordinates": [
@@ -1317,7 +1369,7 @@ Table of Contents
              ]
          ]
      }
-
+</samp>
 
 
 <span class="h3"><h3><a class="selflink" name="appendix-A.7" href="#appendix-A.7">A.7</a>.  GeometryCollections</h3></span>
@@ -1325,6 +1377,7 @@ Table of Contents
    Each element in the "geometries" array of a GeometryCollection is one
    of the Geometry objects described above:
 
+   <samp>
      {
          "type": "GeometryCollection",
          "geometries": [{
@@ -1338,6 +1391,7 @@ Table of Contents
              ]
          }]
      }
+</samp>
 
 <span class="h2"><h2><a class="selflink" name="appendix-B" href="#appendix-B">Appendix B</a>.  Changes from the Pre-IETF GeoJSON Format Specification</h2></span>
 
@@ -1419,34 +1473,36 @@ Table of Contents
    (over and above the grouping of Feature objects in a
    FeatureCollection), e.g., in order to efficiently "stream" large
    numbers of Feature objects.  The definition of such sets or sequences
-   is outside the scope of this specification.
+   is outside the scope of this specification.<p>
 
    If such a representation is needed, a new media type is required that
    has the ability to represent these sets or sequences.  When defining
    such a media type, it may be useful to base it on "JavaScript Object
    Notation (JSON) Text Sequences" [<a href="https://tools.ietf.org/html/rfc7464" title="&quot;JavaScript Object Notation (JSON) Text Sequences&quot;">RFC7464</a>], leaving the foundations of
    how to represent multiple JSON objects to that specification, and
-   only defining how it applies to GeoJSON objects.
+   only defining how it applies to GeoJSON objects.<p>
 
-Acknowledgements
+<h3>Acknowledgements</h3>
 
    The GeoJSON format is the product of discussion on the GeoJSON
    mailing list, &lt;<a href="http://lists.geojson.org/listinfo.cgi/geojson-geojson.org">http://lists.geojson.org/listinfo.cgi/</a>
    <a href="http://lists.geojson.org/listinfo.cgi/geojson-geojson.org">geojson-geojson.org</a>&gt;, before October 2015 and in the IETF's GeoJSON
    WG after October 2015.
+   <p>
 
 
    Material in this document was adapted with changes from
    &lt;<a href="http://geojson.org/geojson-spec.html">http://geojson.org/geojson-spec.html</a>&gt; [<a href="#ref-GJ2008" title="&quot;The GeoJSON Format Specification&quot;">GJ2008</a>], which is licensed
    under &lt;<a href="http://creativecommons.org/licenses/by/3.0/us/">http://creativecommons.org/licenses/by/3.0/us/</a>&gt;.
+   <p>
 
-Authors' Addresses
+<h3>Authors' Addresses</h3>
 
    Howard Butler
    Hobu Inc.
 
    Email: howard@hobu.co
-
+<p>
 
    Martin Daly
    Cadcorp
@@ -1457,6 +1513,7 @@ Authors' Addresses
    Allan Doyle
 
    Email: adoyle@intl-interfaces.com
+   <p>
 
 
    Sean Gillies
@@ -1464,6 +1521,7 @@ Authors' Addresses
 
    Email: sean.gillies@gmail.com
    URI:   <a href="http://sgillies.net/">http://sgillies.net</a>
+   <p>
 
 
    Stefan Hagen
@@ -1473,6 +1531,7 @@ Authors' Addresses
 
    Email: stefan@hagen.link
    URI:   <a href="http://stefan-hagen.website/">http://stefan-hagen.website/</a>
+   <p>
 
 
    Tim Schaub
@@ -1480,7 +1539,7 @@ Authors' Addresses
 
    Email: tim.schaub@gmail.com
 
-</pre><br>
+</div><br>
     <span class="noprint"><small><small>Html markup produced by rfcmarkup 1.127, available from
       <a href="https://tools.ietf.org/tools/rfcmarkup/">https://tools.ietf.org/tools/rfcmarkup/</a>
     </small></small></span>
