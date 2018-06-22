@@ -67,6 +67,7 @@ System 1984, and units of decimal degrees.">
             font-family:sans-serif;
     	    font-weight: bold;
             color:green !important;
+            margin-bottom:0;
         }
         h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
         h1 span, h2 span, h3 span, h4 span {
@@ -630,7 +631,7 @@ ISSN: 2070-1721                                                  Cadcorp
    antimeridian between a point (lon0, lat0) and (lon1, lat1) can be
    calculated as
 
-   F(lon, lat) = (lon0 + (lon1 - lon0) * t, lat0 + (lat1 - lat0) * t)
+   <code>F(lon, lat) = (lon0 + (lon1 - lon0) * t, lat0 + (lat1 - lat0) * t)</code>
 
    with t being a real number greater than or equal to 0 and smaller
    than or equal to 1.  Note that this line may markedly differ from the
@@ -863,7 +864,7 @@ ISSN: 2070-1721                                                  Cadcorp
    A GeoJSON object MAY have a member named "bbox" to include
    information on the coordinate range for its Geometries, <span class="gj-type">Feature</span>s, or
    <span class="gj-type">FeatureCollection</span>s.  The value of the bbox member MUST be an array of
-   length 2*n where n is the number of dimensions represented in the
+   length <code>2*n</code> where n is the number of dimensions represented in the
    contained geometries, with all axes of the most southwesterly point
    followed by all axes of the more northeasterly point.  The axes order
    of a bbox follows the axes order of geometries.<p>
@@ -930,7 +931,7 @@ ISSN: 2070-1721                                                  Cadcorp
    <samp>
    (lon, lat) = (west + (east - west) * t, north)
 </samp>
-   with 0 &lt;= t &lt;= 1.
+   with <code>0 &lt;= t &lt;= 1</code>.
 
 <span class="h3"><h3><a class="selflink" name="section-5.2" href="#section-5.2">5.2</a>.  The Antimeridian</h3></span>
 
@@ -1017,7 +1018,7 @@ ISSN: 2070-1721                                                  Cadcorp
        "title": "Example Feature"
    }
 </samp>
-   the name/value pair of "title": "Example <span class="gj-type">Feature</span>" is a foreign
+   the name/value pair of <code>"title": "Example</code> <span class="gj-type">Feature</span>" is a foreign
    member.  When the value of a foreign member is an object, all the
    descendant members of that object are themselves foreign members.
    <p>
@@ -1040,7 +1041,7 @@ ISSN: 2070-1721                                                  Cadcorp
        }
    }
 </samp>
-   the "centerline" member is not a GeoJSON <span class="gj-type">Geometry</span> object.
+   the <code>"centerline"</code> member is not a GeoJSON <span class="gj-type">Geometry</span> object.
 
 <span class="h2"><h2><a class="selflink" name="section-7" href="#section-7">7</a>.  GeoJSON Types Are Not Extensible</h2></span>
 
