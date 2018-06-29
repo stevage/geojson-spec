@@ -222,6 +222,19 @@ System 1984, and units of decimal degrees.">
       border-left:1px solid lightgrey;
     }
 
+    .note {
+      background: hsl(60, 80%, 90%);
+      border-left: 2px solid hsl(60, 80%, 60%);
+      padding:0.5em 3em;
+
+    }
+
+    .steve-comment {
+      background: hsl(240, 80%, 90%);
+      border-left: 2px solid hsl(240,80%, 60%);
+      padding: 0.5em 3em;
+    }
+
     </style>
     <!--[if IE]>
     <style>
@@ -270,7 +283,7 @@ System 1984, and units of decimal degrees.">
 <h3 class="h3">Disclaimer</h3>
 This is an unofficial, reformatted version of the official <a href="https://tools.ietf.org/html/rfc7946">RFC 7946</a>. 
 
-It does not incorporate <a href="https://www.rfc-editor.org/errata_search.php?rfc=7946">known errata</a>.
+It includes mention of 1 <a href="https://www.rfc-editor.org/errata_search.php?rfc=7946">known errata</a>.
 <p>
     No wording has been intentionally changed from the official document. Some sections of RFC administration have been removed. This version has been prepared by <a href="https://github.com/stevage">Steve Bennett</a>, who had no involvement with the creation of the GeoJSON specification, nor its ongoing maintenance. Raise issues <a href="https://github.com/stevage/geojson-spec/issues">here</a>.
 </p>
@@ -697,12 +710,16 @@ ISSN: 2070-1721                                                  Cadcorp
   <li>A linear ring MUST follow the right-hand rule with respect to the
       area it bounds, i.e., exterior rings are counterclockwise, and
       holes are clockwise.
+      <br>
+      <i>Note: a reported (but not accepted) <a href="https://www.rfc-editor.org/errata/rfc7946">erratum on the RFC</a> states that "counterclockwise" and "clockwise" are backwards here.</i>
+      <div class="steve-comment">Steve comment: It appears there is confusion around the term "right-hand rule". The examples in this RFC, plus geojsonlint.com, follow "exterior boundaries are counterclockwise, and holes are clockwise" (ie, not the erratum).</div>
 </li>
 </ul>
-
+   <div class="note">
    Note: the [<a href="#ref-GJ2008" title="&quot;The GeoJSON Format Specification&quot;">GJ2008</a>] specification did not discuss linear ring winding
    order.  For backwards compatibility, parsers SHOULD NOT reject
    <span class="gj-type">Polygon</span>s that do not follow the right-hand rule.
+   </div>
 
    Though a linear ring is not explicitly represented as a GeoJSON
    geometry type, it leads to a canonical formulation of the <span class="gj-type">Polygon</span>
@@ -856,7 +873,7 @@ ISSN: 2070-1721                                                  Cadcorp
    ellipsoid.  In the absence of elevation values, applications
    sensitive to height or depth SHOULD interpret positions as being at
    local ground or sea level.<p>
-
+   <div class="note">
    Note: the use of alternative coordinate reference systems was
    specified in [<a href="#ref-GJ2008" title="&quot;The GeoJSON Format Specification&quot;">GJ2008</a>], but it has been removed from this version of
    the specification because the use of different coordinate reference
@@ -868,6 +885,7 @@ ISSN: 2070-1721                                                  Cadcorp
    involved parties have a prior arrangement, alternative coordinate
    reference systems can be used without risk of data being
    misinterpreted.<p>
+   </div>
 
 <span class="h2"><h2><a class="selflink" name="section-5" href="#section-5">5</a>.  Bounding Box</h2></span>
 
@@ -1155,6 +1173,8 @@ ISSN: 2070-1721                                                  Cadcorp
    in, e.g., sprintf) amounts to about 10 centimeters, a precision well
    within that of current GPS systems.  Implementations should consider
    the cost of using a greater precision than necessary.<p>
+
+   <div class="steve-comment">Steve's comment: see <a href="https://github.com/mapbox/geobuf">GeoBuf</a> for one alternative, highly space efficient, mechanism for encoding GeoJSON.</div>
 
    Furthermore, the WGS 84 [<a href="#ref-WGS84" title="&quot;Department of Defense World Geodetic System 1984: Its Definition and Relationships with Local Geodetic Systems&quot;">WGS84</a>] datum is a relatively coarse
    approximation of the geoid, with the height varying by up to 5 m (but
@@ -1525,6 +1545,9 @@ ISSN: 2070-1721                                                  Cadcorp
    Notation (JSON) Text Sequences" [<a href="https://tools.ietf.org/html/rfc7464" title="&quot;JavaScript Object Notation (JSON) Text Sequences&quot;">RFC7464</a>], leaving the foundations of
    how to represent multiple JSON objects to that specification, and
    only defining how it applies to GeoJSON objects.<p>
+
+   <div class="steve-comment">Steve comment: <a href="http://ndjson.org">Newline Delimited JSON</a> or <a href="http://jsonlines.org">JSON Lines</a> are very similar specifications for JSON with one line per object, and can be used for GeoJSON, with one line per Feature.
+   </div>
 
 <h3>Acknowledgements</h3>
 
