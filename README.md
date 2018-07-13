@@ -17,7 +17,7 @@ All capitalisation MUST match the forms given here.
 
 ### GeoJSON objects
 
-There are four classes of GeoJSON object: six geometry types (`Point`, `LineString`, `Polygon`, `MultiPoint`, `MultiLineString`, `MultiPolygon`), `Feature`, `GeometryCollection`, `FeatureCollection`.
+There are four classes of GeoJSON object: 6 geometry types (`Point`, `LineString`, `Polygon`, `MultiPoint`, `MultiLineString`, `MultiPolygon`), `Feature`, `GeometryCollection`, `FeatureCollection`, making 9 GeoJSON object types.
 
 There is one other kind of object: bbox.
 
@@ -56,13 +56,26 @@ A Position is either `[longitude, latitude]` OR `[longitude, latitude, elevation
 The structure of the `coordinates` array depends on the geometry type:
 
 * `Point` (depth 1, length 2 or 3): `Position`
-* `MultiPoint` (depth 2, length 0+): `[Point, Point, ...]`
-* `LineString` (depth 2, length 2+): `[Point, Point, ...]`
+
+  That is: `[lng, lat]`
+* `MultiPoint` (depth 2, length 0+): `[Position, Position, ...]`
+
+  That is: `[pos, pos, ...]`
+* `LineString` (depth 2, length 2+): `[Position, Position, ...]`
+
+  That is: `[pos, pos, ...]`
 * `MultiLineString` (depth 3, length 0+): `[LineString, LineString, ...]`
+
+  That is: `[[pos, ...], [pos, ...], ...]`
 * `Polygon` (depth 3, length 1+): `[LineString, LineString, ...]`.
+
+  That is: `[[pos1a, pos1b, ..., pos1a], [pos2a, pos2b, ..., pos2a], ...]`
   * Each `LineString` array MUST have length 4+, and its last element MUST be identical to its first. 
   * The first LineString represents the exterior boundary, traced counterclockwise. The rest are holes inside the polygon, traced clockwise.
+  
 * `MultiPolygon` (depth 4, length 0+): `[Polygon, Polygon, ...]`
+
+  That is: `[[[posA1a, posA1b, ..., posA1a], [posA2a, posA2b, ..., posA2a], ...], [[posB1a, posB1b, ..., posB1a], [posB2a, posB2b, ..., posB2a], ...]]`
 
 A LineString or Polygon SHOULD NOT cross the 180 line of longitude. Instead, it should be split into two or more pieces and represented with a MultiLineString or MultiPolygon instead.
 
