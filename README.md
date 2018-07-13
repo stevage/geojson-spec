@@ -13,9 +13,11 @@ GeoJSON is an easy-to-work with format for geospatial data. This document is an 
 
 A GeoJSON file is a JSON file which contains exactly one GeoJSON object, which is most commonly (but need not be) a FeatureCollection.
 
+All capitalisation MUST match the forms given here.
+
 ### GeoJSON objects
 
-There are four classes of GeoJSON object: Geometry (consisting of 6 types), Feature, GeometryCollection, FeatureCollection.
+There are four classes of GeoJSON object: six geometry types (`Point`, `LineString`, `Polygon`, `MultiPoint`, `MultiLineString`, `MultiPolygon`), `Feature`, `GeometryCollection`, `FeatureCollection`.
 
 There is one other kind of object: bbox.
 
@@ -27,11 +29,11 @@ If the bounding box spans the 180 line of longitude, "west" will be numerically 
 
 #### Geometry
 
-Represents the location of something.
+Represents a location.
 
 ```js
 {
-    // REQUIRED, one of: Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon
+    // REQUIRED, one of: Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon.
     "type": "Point",
 
     // REQUIRED: array of coordinates whose structure depends on the "type":
@@ -62,12 +64,35 @@ The structure of the `coordinates` array depends on the geometry type:
   * The first LineString represents the exterior boundary, traced counterclockwise. The rest are holes inside the polygon, traced clockwise.
 * `MultiPolygon` (depth 4, length 0+): `[Polygon, Polygon, ...]`
 
-A LineString or Polygon SHOULD NOT cross the 180 line of longitude. In that case, it should be split into two or more pieces and represented with a MultiLineString or MultiPolygon instead.
+A LineString or Polygon SHOULD NOT cross the 180 line of longitude. Instead, it should be split into two or more pieces and represented with a MultiLineString or MultiPolygon instead.
+
+#### GeometryCollection
+
+Represents a location composed of heterogeneous geometry types, such as a line combined with a point. Contains an ordered array of Geometry objects. 
+
+A GeometryCollection SHOULD NOT contain other GeometryCollections. 
+
+A GeometryCollection SHOULD NOT be used if a different Geometry object (such as a MultiPolygon) could be used instead.
+
+```js
+{
+    // REQUIRED: must contain "GeometryCollection"
+    "type": "GeometryCollection",
+
+    // REQUIRED: array of 0+ Geometry objects.
+    "geometries": [...],
+
+   // OPTIONAL: bbox object
+   "bbox": [...],
+
+   // OPTIONAL: additional attributes.
+}
+```
 
 
 #### Feature
 
-Represents a thing located in space. Contains a Geometry and additional properties.
+Represents a thing that has a location. Contains a Geometry or GeometryCollection, and additional properties.
 
 ```js
 {
@@ -90,32 +115,9 @@ Represents a thing located in space. Contains a Geometry and additional properti
 }
 ```
 
-#### GeometryCollection
-
-Represents a complex location, such as a line combined with a point. Contains an ordered array of Geometry objects. 
-
-A GeometryCollection SHOULD NOT contain other GeometryCollections. 
-
-A GeometryCollection SHOULD NOT be used if a different Geometry object (such as a MultiPolygon) could be used instead.
-
-```js
-{
-    // REQUIRED: must contain "GeometryCollection"
-    "type": "GeometryCollection",
-
-    // REQUIRED: array of 0+ Geometry objects.
-    "geometries": [...]
-
-   // OPTIONAL: bbox object
-   "bbox": [...],
-
-   // OPTIONAL: additional attributes.
-}
-```
-
 #### FeatureCollection
 
-Represents a collection of things located in space. Contains an ordered array of Feature objects.
+Represents a collection of things that have locations. Contains an ordered array of Feature objects.
 
 ```js
 {
@@ -123,7 +125,7 @@ Represents a collection of things located in space. Contains an ordered array of
     "type": "FeatureCollection",
 
     // REQUIRED: array of 0+ Feature objects.
-    "features": [...]
+    "features": [...],
 
    // OPTIONAL: bbox object
    "bbox": [...],
