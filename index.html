@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head profile="http://dublincore.org/documents/2008/08/04/dc-html/">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://dublincore.org/documents/2008/08/04/dc-html/">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="robots" content="index,follow">
     <meta name="creator" content="rfcmarkup version 1.127">
@@ -235,6 +236,23 @@ System 1984, and units of decimal degrees.">
       padding: 0.5em 3em;
     }
 
+    .menu {
+        /* position: absolute; */
+        height: 100px;
+        width: 100%;
+        background:white;
+        font-family:sans-serif;
+        margin-bottom:2em;
+        
+    }
+    .menu h1 {
+        font-family:'Courier New', Courier, monospace;
+        font-size: 32pt;
+    }
+    .menu li {
+        font-size:16px;
+    }
+
     </style>
     <!--[if IE]>
     <style>
@@ -273,6 +291,15 @@ System 1984, and units of decimal degrees.">
     </script>
 </head>
 <body onload="addHeaderTags()">
+    <div class="menu">
+        <h1>geojson.win</h1>
+        <ul>
+        <li>Formal GeoJSON specification</li>
+        <li><a href="https://github.com/stevage/geojson-spec">Readable GeoJSON specification</a></li>
+        <li><a href="newline-delimited/">Newline-delimited GeoJSON specification</a></li>
+        </ul>
+
+    </div>
   <div class="content">
 <!--    <div style="height: 13px;">
       <div onmouseover="this.style.cursor='pointer';" onclick="showElem('legend');" onmouseout="hideElem('legend')" style="height: 6px; position: absolute; cursor: pointer;" class="pre noprint docinfo bgblue" title="Click for colour legend.">                                                                        </div>

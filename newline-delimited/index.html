@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/tachyons.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            pre {
+                font-size:10px;
+                margin:0 0.2rem;
+            }
+            h1, h2, h3 {
+                color:hsl(240,90%,20%);
+            }
+        </style>
+    </head>
+    <body class="sans-serif pa4">
+        <div class="">
+            <div class="flex justify-center">
+                <div class="measure-wide">
+                    <h1 class="f3">
+                        Newline-delimited GeoJSON
+                    </h1>
+                    <p>
+                    <b>Newline-delimited GeoJSON</b> (also known as "<b>line-oriented GeoJSON</b>", "<a href="https://www.interline.io/blog/geojsonl-extracts/"><b>GeoJSONL</b></a>", 
+                    "<a href="https://www.gdal.org/drv_geojsonseq.html"><b>GeoJSONSeq</b></a>" or "<a href="https://tools.ietf.org/html/rfc8142"><b>GeoJSON Text Sequences</b></a>") is a text-based geospatial file format that is particularly convenient for transformation and processing. Each line can be read independently, parsed, and processed, without the entire file ever having to be parsed in memory, which is great for huge files.
+                    <br><br>
+                    It is simply <a href="http://jsonlines.org">newline-oriented JSON</a> applied to <a href="http://geojson.win">GeoJSON</a>, and formalised as <a href="https://tools.ietf.org/html/rfc8142">RFC 8142</a>. 
+                    <ol>
+                        <li>Remove the top-level <code>FeatureCollection</code>.</li>
+                        <li>Output each <code>Feature</code> minified, on its own line, separated by <code>\n</code>.</li>
+                        <li>Don't include commas between <code>Feature</code>s.</li>
+                    </ol>
+                    </p>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <div class="w-30">
+                    <h2>Normal GeoJSON</h2>
+                    <pre class="b--black bg-washed-yellow pa1 ba">
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Melbourne"
+            }, "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    144.9584,
+                    -37.8173
+                ]
+            }
+        }, {
+            "type": "Feature",
+            "properties": {
+                "name": "Canberra"
+            }, "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    149.1009,
+                    -35.3039
+                ]
+            }
+        }, {
+            "type": "Feature",
+            "properties": {
+                "name": "Sydney"
+            }, "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    151.2144,
+                    -33.8766
+                ]
+            }
+        }
+    ]
+}
+                    </pre>
+                </div>
+                <div class="w-60 sans-serif">
+                    <h2>Newline-delimited GeoJSON</h2>
+                    <pre class="b--black bg-washed-yellow pa1 ba">
+{"type":"Feature","properties":{"name":"Melbourne"},"geometry":{"type":"Point","coordinates":[144.9584,-37.8173]}}
+{"type":"Feature","properties":{"name":"Canberra"},"geometry":{"type":"Point","coordinates":[149.1009,-35.3039]}}
+{"type":"Feature","properties":{"name":"Sydney"},"geometry":{"type":"Point","coordinates":[151.2144,-33.8766]}}
+                    </pre>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                    <div class="measure-wide">
+                        <h2>Tools</h2>
+                        These tools support newline-delimited GeoJSON:
+                        <ul>
+                            <li><a href="https://github.com/mapbox/tippecanoe">Tippecanoe</a>: generate vector tiles from GeoJSON files.</li>
+                            <li><a href="https://github.com/mbostock/shapefile">Shape2json</a>: convert Esri Shapefiles to GeoJSON.</li>
+                            <li><a href="http://npmjs.com/geojson2ndjson">geojson2ndjson</a>: convert GeoJSON files to/from newline-delimited format</li>
+                            <li><a href="https://www.gdal.org/drv_geojsonseq.html">GDAL</a>, powerful geospatial manipulation suite, with the "GeoJSONSeq" driver.</li>
+                            </li>
+                        </ul>
+                        These tools work on newline-delimited JSON and are also useful for newline-delimited GeoJSON:
+                        <ul>
+                            <li><a href="https://github.com/mbostock/ndjson-cli">ndjson-cli</a></li>
+                        </ul>
+                        <h2>Resources</h2>
+                        <ul>
+                            <li><a href="https://www.interline.io/blog/geojsonl-extracts/">GeoJSONL: An optimized format for large geographic datasets</a>(blog post)</li>
+                            <li><a href="https://tools.ietf.org/html/rfc8142">RFC 8142: GeoJSON Text Sequences</a> (formal specification)</li>
+
+                        </ul>
+
+                    </div>
+            </div>
+            <div class="w-100 bt">
+                Created by <a href="http://hire.stevebennett.me">Steve Bennett</a> (<a href="https://twitter.com/stevage1/">@stevage1</a>).
+            </div>
+        </div>
+    </body>
+
+</html>
