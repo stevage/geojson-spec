@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Single Page Apps for GitHub Pages</title>
+    <script type="text/javascript">
+      // based on https://raw.githubusercontent.com/rafrex/spa-github-pages/gh-pages/404.html
+
+      var l = window.location;
+      if (l.toString().match(/\/newline-delimited(\/?)/)) {
+        //   l.replace(l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.replace(l.toString().replace(/newline-delimited.*/, 'newline-delimited/index.html'));
+      }
+
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
